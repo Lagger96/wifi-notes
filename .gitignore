@@ -66,3 +66,13 @@ fastlane/readme.md
 .idea/modules.xml
 .gitignore.rej
 .idea/vcs.xml
+*.iml
+.gradle
+/local.properties
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
