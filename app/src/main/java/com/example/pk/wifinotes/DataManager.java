@@ -32,8 +32,8 @@ public class DataManager {
         return mapToNetworkCategory(networkDAO.getNetworksByCategoryName(categoryName), categoryName);
     }
 
-    public void addNetwork(Network network) {
-        networkDAO.saveNetwork(network);
+    public boolean addNetwork(Network network) {
+       return networkDAO.saveNetwork(network);
     }
 
     public void updateNetwork(Network network) {
