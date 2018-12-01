@@ -8,9 +8,9 @@ import android.util.Log;
 import com.example.pk.wifinotes.models.Network;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class NetworkDAO extends DBContentProvider {
 
@@ -82,7 +82,13 @@ public class NetworkDAO extends DBContentProvider {
     }
 
     public Set<String> getCategoriesNames() {
-        return getAllNetworks().stream().map(Network::getCategory).collect(Collectors.toSet());
+        Set<String> categoriesNames = new HashSet<>();
+
+        for (Network network : getAllNetworks()) {
+            categoriesNames.add(network.getCategory());
+        }
+
+        return categoriesNames;
     }
 
     private List<Network> getNetworksFromCursor() {

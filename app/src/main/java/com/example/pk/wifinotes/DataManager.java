@@ -5,8 +5,8 @@ import com.example.pk.wifinotes.DAO.NetworkDAO;
 import com.example.pk.wifinotes.models.Network;
 import com.example.pk.wifinotes.models.NetworkCategory;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class DataManager {
 
@@ -25,7 +25,13 @@ public class DataManager {
     }
 
     public List<NetworkCategory> getNetworkCategories() {
-        return networkDAO.getCategoriesNames().stream().map(this::getNetworkCategory).collect(Collectors.toList());
+        List<NetworkCategory> categories = new ArrayList<>();
+
+        for (String categoryName : networkDAO.getCategoriesNames()) {
+            categories.add(mapToNetworkCategory(networkDAO.getNetworksByCategoryName(categoryName), categoryName));
+        }
+
+        return categories;
     }
 
     public NetworkCategory getNetworkCategory(String categoryName) {
@@ -33,7 +39,7 @@ public class DataManager {
     }
 
     public boolean addNetwork(Network network) {
-       return networkDAO.saveNetwork(network);
+        return networkDAO.saveNetwork(network);
     }
 
     public void updateNetwork(Network network) {
