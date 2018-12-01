@@ -16,6 +16,9 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class QRActivity extends AppCompatActivity {
 
+    private static final String NETWORK_ID_PARAM = "networkId";
+    private static final String CATEGORY_NAME_PARAM = "categoryName";
+    private static final int DEFAULT_VALUE = -1;
     private ImageView QRCodeView;
     private DataManager dataManager;
 
@@ -31,13 +34,13 @@ public class QRActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        String content = "Can not be empty";
+        String content = "";
         Intent intent = getIntent();
 
-        int networkId = intent.getIntExtra("networkId", 0);
-        String categoryName = intent.getStringExtra("categoryName");
+        int networkId = intent.getIntExtra(NETWORK_ID_PARAM, DEFAULT_VALUE);
+        String categoryName = intent.getStringExtra(CATEGORY_NAME_PARAM);
 
-        if (networkId != 0) {
+        if (networkId != DEFAULT_VALUE) {
             Network network = dataManager.getNetwork(networkId);
             content = network.toJSONString();
         } else if (categoryName != null) {
