@@ -13,9 +13,8 @@ import java.util.List;
 public class SavedNetworksAdapter extends RecyclerView.Adapter<SavedNetworksAdapter.SavedNetworksViewHolder> {
 
     private List<Network> networks;
-    private OnClickNetworkAction displayDetailsAction;
-    private OnClickNetworkAction shareNetworkAction;
     private Boolean displayCategoryName;
+    private Callbacks callbacks;
 
     public static class SavedNetworksViewHolder extends RecyclerView.ViewHolder {
 
@@ -34,15 +33,14 @@ public class SavedNetworksAdapter extends RecyclerView.Adapter<SavedNetworksAdap
         }
     }
 
-    public SavedNetworksAdapter(List<Network> networks, OnClickNetworkAction displayDetailsAction, OnClickNetworkAction shareNetworkAction, Boolean displayCategoryName) {
+    public SavedNetworksAdapter(List<Network> networks, Callbacks callbacks, Boolean displayCategoryName) {
         this.networks = networks;
-        this.displayDetailsAction = displayDetailsAction;
-        this.shareNetworkAction = shareNetworkAction;
         this.displayCategoryName = displayCategoryName;
+        this.callbacks = callbacks;
     }
 
-    public SavedNetworksAdapter(List<Network> networks, OnClickNetworkAction displayDetailsAction, OnClickNetworkAction shareNetworkAction) {
-        this(networks, displayDetailsAction, shareNetworkAction, true);
+    public SavedNetworksAdapter(List<Network> networks, Callbacks callbacks) {
+        this(networks, callbacks, true);
     }
 
     @Override
@@ -61,8 +59,8 @@ public class SavedNetworksAdapter extends RecyclerView.Adapter<SavedNetworksAdap
         if (!displayCategoryName) {
             holder.tvCategoryName.setVisibility(View.GONE);
         }
-        holder.itemView.setOnClickListener((v) -> displayDetailsAction.onClick(network));
-        holder.iconShare.setOnClickListener((v) -> shareNetworkAction.onClick(network));
+        holder.itemView.setOnClickListener((v) -> callbacks.displayDetails.onClick(network));
+        holder.iconShare.setOnClickListener((v) -> callbacks.shareNetwork.onClick(network));
     }
 
     @Override

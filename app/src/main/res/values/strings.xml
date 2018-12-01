@@ -8,4 +8,8 @@
     <string name="networks_categories">CATEGORIES</string>
     <string name="add_network">ADD</string>
     <string name="import_network">IMPORT</string>
+    <string name="copy">Copy</string>
+    <string name="edit">Edit</string>
+    <string name="toast_password_copied">Password has been copied</string>
+    <string name="toast_error">Something went wrong!</string>
 </resources>

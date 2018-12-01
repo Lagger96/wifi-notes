@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import com.example.pk.wifinotes.database.DbHelper;
 import com.example.pk.wifinotes.models.NetworkCategory;
 
 import java.util.List;
@@ -16,11 +15,9 @@ import java.util.List;
 public class NetworksCategoriesAdapter extends RecyclerView.Adapter<NetworksCategoriesAdapter.NetworksCategoriesViewHolder> {
 
     private List<NetworkCategory> categories;
-    private OnClickNetworkAction displayDetailsAction;
-    private OnClickNetworkAction shareNetworkAction;
-    private OnClickCategoryAction shareNetworkCategoryAction;
     private Context context;
     private RecyclerView.Adapter adapter;
+    private Callbacks callbacks;
 
     public static class NetworksCategoriesViewHolder extends RecyclerView.ViewHolder {
 
@@ -37,11 +34,9 @@ public class NetworksCategoriesAdapter extends RecyclerView.Adapter<NetworksCate
         }
     }
 
-    public NetworksCategoriesAdapter(List<NetworkCategory> categories, OnClickNetworkAction displayDetailsAction, OnClickNetworkAction shareNetworkAction, OnClickCategoryAction shareNetworkCategoryAction) {
+    public NetworksCategoriesAdapter(List<NetworkCategory> categories, Callbacks callbacks) {
         this.categories = categories;
-        this.displayDetailsAction = displayDetailsAction;
-        this.shareNetworkAction = shareNetworkAction;
-        this.shareNetworkCategoryAction = shareNetworkCategoryAction;
+        this.callbacks = callbacks;
     }
 
     @Override
@@ -57,11 +52,11 @@ public class NetworksCategoriesAdapter extends RecyclerView.Adapter<NetworksCate
     public void onBindViewHolder(NetworksCategoriesViewHolder holder, int position) {
         final NetworkCategory category = categories.get(position);
         holder.tvCategoryName.setText(category.getCategoryName());
-        holder.buttonShareCategory.setOnClickListener((v) -> shareNetworkCategoryAction.onClick(category));
+        holder.buttonShareCategory.setOnClickListener((v) -> callbacks.shareNetworkCategory.onClick(category));
 
         holder.rvNetworks.setLayoutManager(new LinearLayoutManager(context));
 
-        adapter = new SavedNetworksAdapter(category.getNetworks(), displayDetailsAction, shareNetworkAction, false);
+        adapter = new SavedNetworksAdapter(category.getNetworks(), callbacks,false);
         holder.rvNetworks.setAdapter(adapter);
     }
 
