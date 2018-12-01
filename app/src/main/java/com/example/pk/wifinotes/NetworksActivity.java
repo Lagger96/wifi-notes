@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import com.example.pk.wifinotes.database.DbHelper;
@@ -37,12 +36,7 @@ public class NetworksActivity extends AppCompatActivity {
 
     private void setupImportButton() {
         Button importButton = findViewById(R.id.button_import);
-        importButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                importNetwork();
-            }
-        });
+        importButton.setOnClickListener((v) -> importNetwork());
     }
 
     private void importNetwork() {
@@ -51,12 +45,7 @@ public class NetworksActivity extends AppCompatActivity {
 
     private void setupAddButton() {
         Button addButton = findViewById(R.id.button_add);
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addNetwork();
-            }
-        });
+        addButton.setOnClickListener((v) -> addNetwork());
     }
 
     private void addNetwork() {

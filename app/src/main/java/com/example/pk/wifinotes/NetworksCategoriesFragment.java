@@ -9,9 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import com.example.pk.wifinotes.database.DbHelper;
-import com.example.pk.wifinotes.models.Network;
 import com.example.pk.wifinotes.models.NetworkCategory;
 
 import java.util.List;
@@ -46,19 +44,7 @@ public class NetworksCategoriesFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new NetworksCategoriesAdapter(categories, this::displayDetails, this::shareNetwork, this::shareNetworkCategory);
+        adapter = new NetworksCategoriesAdapter(categories, new Callbacks(getContext()));
         recyclerView.setAdapter(adapter);
-    }
-
-    private void displayDetails(Network network) {
-        Toast.makeText(getContext(), "Network details", Toast.LENGTH_SHORT).show();
-    }
-
-    private void shareNetwork(Network network) {
-        Toast.makeText(getContext(), "Network share", Toast.LENGTH_SHORT).show();
-    }
-
-    private void shareNetworkCategory(NetworkCategory category) {
-        Toast.makeText(getContext(), "Category share", Toast.LENGTH_SHORT).show();
     }
 }

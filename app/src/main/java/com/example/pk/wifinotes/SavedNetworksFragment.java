@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import com.example.pk.wifinotes.database.DbHelper;
 import com.example.pk.wifinotes.models.Network;
 
@@ -46,16 +45,7 @@ public class SavedNetworksFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new SavedNetworksAdapter(networks, this::displayDetails, this::shareNetwork);
+        adapter = new SavedNetworksAdapter(networks, new Callbacks(getContext()));
         recyclerView.setAdapter(adapter);
-
-    }
-
-    private void displayDetails(Network network) {
-        Toast.makeText(getContext(), "Network details", Toast.LENGTH_SHORT).show();
-    }
-
-    private void shareNetwork(Network network) {
-        Toast.makeText(getContext(), "Network share", Toast.LENGTH_SHORT).show();
     }
 }
