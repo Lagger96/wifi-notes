@@ -9,4 +9,9 @@
     <string name="add">ADD</string>
     <string name="import_network">IMPORT</string>
     <string name="add_network">Add network</string>
+    <string name="cancel">CANCEL</string>
+    <string name="ssid_hint">Network name (SSID)</string>
+    <string name="password_hint">Password</string>
+    <string name="category_hint">Category</string>
+    <string name="description_hint">Description</string>
 </resources>
