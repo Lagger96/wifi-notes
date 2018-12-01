@@ -6,6 +6,7 @@
     <string name="title_activity_networks">NetworksActivity</string>
     <string name="saved_networks">SAVED</string>
     <string name="networks_categories">CATEGORIES</string>
-    <string name="add_network">ADD</string>
+    <string name="add">ADD</string>
     <string name="import_network">IMPORT</string>
+    <string name="add_network">Add network</string>
 </resources>

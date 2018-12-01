@@ -24,7 +24,7 @@
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/add_network"
+                    android:text="@string/add"
                     android:layout_marginEnd="8dp"
                     android:layout_gravity="end"
                     style="@android:style/Widget.Material.Light.Button.Borderless"

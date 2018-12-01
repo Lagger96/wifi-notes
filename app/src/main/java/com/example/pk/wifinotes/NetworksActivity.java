@@ -1,5 +1,6 @@
 package com.example.pk.wifinotes;
 
+import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -61,6 +62,8 @@ public class NetworksActivity extends AppCompatActivity {
 
     private void addNetwork() {
         Toast.makeText(this, "Add network", Toast.LENGTH_SHORT).show();
+        Dialog dialog = new AddNetworkDialog(this);
+        dialog.show();
     }
 
     private void setupViewPager(ViewPager viewPager) {
