@@ -12,7 +12,7 @@ public class DataManager {
 
     private NetworkDAO networkDAO;
 
-    private DataManager(SQLiteDatabase sqLiteDatabase) {
+    public DataManager(SQLiteDatabase sqLiteDatabase) {
         networkDAO = new NetworkDAO(sqLiteDatabase);
     }
 

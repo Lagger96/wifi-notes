@@ -34,4 +34,15 @@ public class Network {
     public String getCategory() {
         return category;
     }
+
+    @Override
+    public String toString() {
+        return "Network{" +
+                "id=" + id +
+                ", ssid='" + ssid + '\'' +
+                ", password='" + password + '\'' +
+                ", description='" + description + '\'' +
+                ", category='" + category + '\'' +
+                '}';
+    }
 }

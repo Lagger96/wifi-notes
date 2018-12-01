@@ -14,6 +14,13 @@ import java.util.Set;
 
 public class NetworkDAO extends DBContentProvider {
 
+    private static final String CATEGORY_COLUMN = "CATEGORY";
+    private static final String DESCRIPTION_COLUMN = "DESCRIPTION";
+    private static final String PASSWORD_COLUMN = "PASSWORD";
+    private static final String SSID_COLUMN = "SSID";
+    private static final String NETWORK_ID_COLUMN = "NETWORK_ID";
+    private static final String TABLE_NAME = "NETWORK";
+
     private Cursor cursor;
     private ContentValues initialValues;
 
@@ -66,7 +73,7 @@ public class NetworkDAO extends DBContentProvider {
     public boolean saveNetwork(Network network) {
         setContentValue(network);
         try {
-            return super.insert("NETWORK", getContentValue()) > 0;
+            return super.insert(TABLE_NAME, getContentValue()) > 0;
         } catch (SQLiteConstraintException ex) {
             Log.w("Database", ex.getMessage());
             return false;
@@ -117,11 +124,11 @@ public class NetworkDAO extends DBContentProvider {
         int ssidIndex;
 
         if (cursor != null) {
-            idIndex = cursor.getColumnIndexOrThrow("NETWORK_ID");
-            categoryIndex = cursor.getColumnIndexOrThrow("CATEGORY");
-            descriptionIndex = cursor.getColumnIndexOrThrow("DESCRIPTION");
-            passwordIndex = cursor.getColumnIndexOrThrow("PASSWORD");
-            ssidIndex = cursor.getColumnIndexOrThrow("SSID");
+            idIndex = cursor.getColumnIndexOrThrow(NETWORK_ID_COLUMN);
+            categoryIndex = cursor.getColumnIndexOrThrow(CATEGORY_COLUMN);
+            descriptionIndex = cursor.getColumnIndexOrThrow(DESCRIPTION_COLUMN);
+            passwordIndex = cursor.getColumnIndexOrThrow(PASSWORD_COLUMN);
+            ssidIndex = cursor.getColumnIndexOrThrow(SSID_COLUMN);
             network = new Network(cursor.getInt(idIndex), cursor.getString(ssidIndex), cursor.getString(passwordIndex), cursor.getString(descriptionIndex), cursor.getString(categoryIndex));
         }
 
@@ -134,9 +141,9 @@ public class NetworkDAO extends DBContentProvider {
 
     private void setContentValue(Network network) {
         initialValues = new ContentValues();
-        initialValues.put("CATEGORY", network.getCategory());
-        initialValues.put("DESCRIPTION", network.getDescription());
-        initialValues.put("PASSWORD", network.getPassword());
-        initialValues.put("SSID", network.getSsid());
+        initialValues.put(CATEGORY_COLUMN, network.getCategory());
+        initialValues.put(DESCRIPTION_COLUMN, network.getDescription());
+        initialValues.put(PASSWORD_COLUMN, network.getPassword());
+        initialValues.put(SSID_COLUMN, network.getSsid());
     }
 }

@@ -3,16 +3,16 @@ package com.example.pk.wifinotes.models;
 import java.util.List;
 
 public class NetworkCategory {
-    private String networkName;
+    private String categoryName;
     private List<Network> networks;
 
-    public NetworkCategory(String networkName, List<Network> networks) {
-        this.networkName = networkName;
+    public NetworkCategory(String categoryName, List<Network> networks) {
+        this.categoryName = categoryName;
         this.networks = networks;
     }
 
-    public String getNetworkName() {
-        return networkName;
+    public String getCategoryName() {
+        return categoryName;
     }
 
     public List<Network> getNetworks() {
@@ -21,5 +21,13 @@ public class NetworkCategory {
 
     public void addNetworkToCategory(Network network) {
         networks.add(network);
+    }
+
+    @Override
+    public String toString() {
+        return "NetworkCategory{" +
+                "categoryName='" + categoryName + '\'' +
+                ", networks=" + networks +
+                '}';
     }
 }
