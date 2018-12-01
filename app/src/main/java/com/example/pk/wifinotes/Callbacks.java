@@ -3,6 +3,7 @@ package com.example.pk.wifinotes;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,11 +29,19 @@ public class Callbacks {
     }
 
     private void shareNetworkCategory(NetworkCategory networkCategory) {
-        Toast.makeText(context, "Category share", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(context, QRActivity.class);
+        intent.putExtra(QRActivity.CATEGORY_NAME_PARAM, networkCategory.getCategoryName());
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 
     private void shareNetwork(Network network) {
-        Toast.makeText(context, "Network share", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(context, QRActivity.class);
+        intent.putExtra(QRActivity.NETWORK_ID_PARAM, network.getId());
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 
     private void displayDetails(Network network) {
