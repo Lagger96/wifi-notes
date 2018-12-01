@@ -1,5 +1,8 @@
 package com.example.pk.wifinotes.models;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Network {
     private Integer id;
     private String ssid;
@@ -35,14 +38,22 @@ public class Network {
         return category;
     }
 
-    @Override
-    public String toString() {
-        return "Network{" +
-                "id=" + id +
-                ", ssid='" + ssid + '\'' +
-                ", password='" + password + '\'' +
-                ", description='" + description + '\'' +
-                ", category='" + category + '\'' +
-                '}';
+    public String toJSONString() {
+        return toJSON().toString();
+    }
+
+    public JSONObject toJSON() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("id", id);
+            jsonObject.put("ssid", ssid);
+            jsonObject.put("password", password);
+            jsonObject.put("description", description);
+            jsonObject.put("category", category);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
     }
 }
