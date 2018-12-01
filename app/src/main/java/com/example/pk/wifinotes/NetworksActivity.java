@@ -1,18 +1,20 @@
 package com.example.pk.wifinotes;
 
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import com.example.pk.wifinotes.database.DbHelper;
 
 public class NetworksActivity extends AppCompatActivity {
 
-    private SavedNetworksFragment mSavedNetworksFragment = new SavedNetworksFragment();
-    private NetworksCategoriesFragment mNetworksCategoriesFragment = new NetworksCategoriesFragment();
+    private SavedNetworksFragment savedNetworksFragment = new SavedNetworksFragment();
+    private NetworksCategoriesFragment networksCategoriesFragment = new NetworksCategoriesFragment();
+    private DataManager dataManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,8 @@ public class NetworksActivity extends AppCompatActivity {
 
         TabLayout tabLayout = findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        dataManager = new DataManager(DbHelper.getInstance(this).getWritableDatabase());
     }
 
     private void setupImportButton() {
@@ -61,8 +65,8 @@ public class NetworksActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(mSavedNetworksFragment, getString(R.string.saved_networks));
-        adapter.addFragment(mNetworksCategoriesFragment, getString(R.string.networks_categories));
+        adapter.addFragment(savedNetworksFragment, getString(R.string.saved_networks));
+        adapter.addFragment(networksCategoriesFragment, getString(R.string.networks_categories));
         viewPager.setAdapter(adapter);
     }
 }
