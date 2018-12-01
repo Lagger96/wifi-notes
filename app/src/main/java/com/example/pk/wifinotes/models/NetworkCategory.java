@@ -37,6 +37,7 @@ public class NetworkCategory {
         JSONObject mainJsonObject = new JSONObject();
 
         try {
+            mainJsonObject.put("categoryName", categoryName);
             mainJsonObject.put("networks", jsonArray);
         } catch (JSONException e) {
             e.printStackTrace();

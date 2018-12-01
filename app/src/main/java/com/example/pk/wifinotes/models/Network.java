@@ -45,12 +45,8 @@ public class Network {
     public JSONObject toJSON() {
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("id", id);
             jsonObject.put("ssid", ssid);
             jsonObject.put("password", password);
-            jsonObject.put("description", description);
-            jsonObject.put("category", category);
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
