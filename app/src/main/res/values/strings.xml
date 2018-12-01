@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Wifi notes</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_networks">NetworksActivity</string>
+    <string name="saved_networks">SAVED</string>
+    <string name="networks_categories">CATEGORIES</string>
+    <string name="add_network">ADD</string>
+    <string name="import_network">IMPORT</string>
 </resources>
