@@ -1,19 +1,50 @@
 package com.example.pk.wifinotes;
 
-import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.pk.wifinotes.DAO.NetworkDAO;
-import com.example.pk.wifinotes.database.DbHelper;
+import com.example.pk.wifinotes.models.Network;
+import com.example.pk.wifinotes.models.NetworkCategory;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class DataManager {
 
-    private SQLiteDatabase database;
     private NetworkDAO networkDAO;
 
-    private DataManager(Context context) {
-        DbHelper dbHelper = new DbHelper(context);
-        database = dbHelper.getWritableDatabase();
-        networkDAO = new NetworkDAO(database);
+    private DataManager(SQLiteDatabase sqLiteDatabase) {
+        networkDAO = new NetworkDAO(sqLiteDatabase);
     }
 
+    public List<Network> getNetworks() {
+        return networkDAO.getAllNetworks();
+    }
+
+    public Network getNetwork(Integer networkId) {
+        return networkDAO.getNetwork(networkId);
+    }
+
+    public List<NetworkCategory> getNetworkCategories() {
+        return networkDAO.getCategoriesNames().stream().map(this::getNetworkCategory).collect(Collectors.toList());
+    }
+
+    public NetworkCategory getNetworkCategory(String categoryName) {
+        return mapToNetworkCategory(networkDAO.getNetworksByCategoryName(categoryName), categoryName);
+    }
+
+    public void addNetwork(Network network) {
+        networkDAO.saveNetwork(network);
+    }
+
+    public void updateNetwork(Network network) {
+        networkDAO.updateNetwork(network);
+    }
+
+    public void deleteNetwork(Integer networkId) {
+        networkDAO.removeNetwork(networkId);
+    }
+
+    private NetworkCategory mapToNetworkCategory(List<Network> networks, String categoryName) {
+        return new NetworkCategory(categoryName, networks);
+    }
 }
