@@ -41,15 +41,11 @@ public class SavedNetworksFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.my_recycler_view);
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
 
-        // use a linear layout manager
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        // specify an adapter (see also next example)
         adapter = new SavedNetworksAdapter(networks, this::displayDetails, this::shareNetwork);
         recyclerView.setAdapter(adapter);
 
