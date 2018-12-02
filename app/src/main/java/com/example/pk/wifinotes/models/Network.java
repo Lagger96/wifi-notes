@@ -18,6 +18,10 @@ public class Network {
         this.category = category;
     }
 
+    public void updatePassword(String newPassword) {
+        password = newPassword;
+    }
+
     public Integer getId() {
         return id;
     }

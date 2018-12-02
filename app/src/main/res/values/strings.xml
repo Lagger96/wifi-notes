@@ -8,4 +8,10 @@
     <string name="networks_categories">CATEGORIES</string>
     <string name="add_network">ADD</string>
     <string name="import_network">IMPORT</string>
+    <string name="conflict_title">Conflict</string>
+    <string name="update_password_text">Do you want to update the password of </string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="succes_import">Imported successfully</string>
 </resources>

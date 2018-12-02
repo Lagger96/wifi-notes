@@ -50,6 +50,10 @@ public class DataManager {
         networkDAO.removeNetwork(networkId);
     }
 
+    public Network getNetworkBySSID(String SSID) {
+        return networkDAO.getNetworkBySSID(SSID);
+    }
+
     private NetworkCategory mapToNetworkCategory(List<Network> networks, String categoryName) {
         return new NetworkCategory(categoryName, networks);
     }

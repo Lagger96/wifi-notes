@@ -36,20 +36,10 @@ public class NetworkDAO extends DBContentProvider {
 
     public Network getNetwork(Integer networkId) {
         final String selectionArgs[] = {String.valueOf(networkId)};
-        Network network = null;
 
         cursor = super.rawQuery("SELECT * FROM NETWORK WHERE NETWORK_ID = ?", selectionArgs);
 
-        if (cursor != null) {
-            cursor.moveToFirst();
-            while (!cursor.isAfterLast()) {
-                network = cursorToEntity(cursor);
-                cursor.moveToNext();
-            }
-            cursor.close();
-        }
-
-        return network;
+        return getEntityFromCursor();
     }
 
     public void updateNetwork(Network network) {
@@ -112,6 +102,27 @@ public class NetworkDAO extends DBContentProvider {
         }
 
         return networks;
+    }
+
+    public Network getNetworkBySSID(String SSID) {
+        final String selectionArgs[] = {SSID};
+
+        cursor = super.rawQuery("SELECT * FROM NETWORK WHERE SSID = ?", selectionArgs);
+
+        return getEntityFromCursor();
+    }
+
+    private Network getEntityFromCursor() {
+        Network network = null;
+        if (cursor != null) {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                network = cursorToEntity(cursor);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        return network;
     }
 
     @Override
