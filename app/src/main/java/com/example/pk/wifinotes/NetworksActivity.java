@@ -82,7 +82,7 @@ public class NetworksActivity extends AppCompatActivity {
             } else {
                 parseJSON(result.getContents());
                 refreshViews();
-                Toast.makeText(this, R.string.succes_import , Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.success_import, Toast.LENGTH_LONG).show();
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
@@ -100,7 +100,7 @@ public class NetworksActivity extends AppCompatActivity {
             if (toImport.has("categoryName")) {
                 importCategory(toImport);
             } else {
-                importNetwork(toImport, null);
+                importNetwork(toImport, "");
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -131,7 +131,7 @@ public class NetworksActivity extends AppCompatActivity {
     private void showConflictDialog(Network newNetwork, Network existingNetwork) {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle(getString(R.string.conflict_title));
-        alertDialog.setMessage(getString(R.string.update_password_text) + newNetwork.getSsid());
+        alertDialog.setMessage(String.format(getString(R.string.conflict_dialog_message), newNetwork.getSsid()));
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getString(R.string.no), (dialog, which) -> dialog.dismiss());
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.yes), (dialog, which) -> {
             existingNetwork.updatePassword(newNetwork.getPassword());

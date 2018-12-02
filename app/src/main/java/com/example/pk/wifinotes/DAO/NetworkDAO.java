@@ -82,7 +82,7 @@ public class NetworkDAO extends DBContentProvider {
         Set<String> categoriesNames = new HashSet<>();
 
         for (Network network : getAllNetworks()) {
-            if (network.getCategory() != null) {
+            if (!network.getCategory().equals("")) {
                 categoriesNames.add(network.getCategory());
             }
         }
