@@ -25,7 +25,7 @@ public class NetworksCategoriesFragment extends Fragment {
 
     public NetworksCategoriesFragment() {
     }
-    
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_networks_categories, container, false);
@@ -46,5 +46,11 @@ public class NetworksCategoriesFragment extends Fragment {
 
         adapter = new NetworksCategoriesAdapter(categories, new Callbacks(getContext()));
         recyclerView.setAdapter(adapter);
+    }
+
+    public void notifyDataChanged() {
+        categories.clear();
+        categories.addAll(dataManager.getNetworkCategories());
+        adapter.notifyDataSetChanged();
     }
 }
