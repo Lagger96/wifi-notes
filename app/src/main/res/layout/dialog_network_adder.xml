@@ -32,6 +32,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:id="@+id/description"
-            android:inputType="textCapSentences"
-            android:hint="@string/description_hint"/>
+            android:inputType="textCapSentences|textMultiLine"
+            android:hint="@string/description_hint"
+            android:minLines="2"
+            android:maxLines="5"
+            android:scrollbars="vertical"/>
 </LinearLayout>
