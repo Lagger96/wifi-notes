@@ -22,6 +22,14 @@ public class Network {
         password = newPassword;
     }
 
+    public boolean hasNoCategory() {
+        return category.equals("");
+    }
+
+    public void assignToCategory(String category) {
+        this.category = category;
+    }
+
     public Integer getId() {
         return id;
     }

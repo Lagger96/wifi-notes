@@ -73,19 +73,15 @@ public class NetworksActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
         if (result != null) {
-            if (result.getContents() == null) {
-                Toast.makeText(this, R.string.cancelled, Toast.LENGTH_LONG).show();
-            } else {
+            if (result.getContents() != null) {
                 parseJSON(result.getContents());
-                refreshViews();
                 Toast.makeText(this, R.string.success_import, Toast.LENGTH_LONG).show();
             }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
@@ -121,10 +117,11 @@ public class NetworksActivity extends AppCompatActivity {
 
         Network existingNetwork = dataManager.getNetworkBySSID(newNetwork.getSsid());
 
-        if (existConflict(newNetwork, existingNetwork)) {
+        if (existConflictOnPassword(newNetwork, existingNetwork)) {
             showConflictDialog(newNetwork, existingNetwork);
         } else {
             dataManager.addNetwork(newNetwork);
+            refreshViews();
         }
     }
 
@@ -133,14 +130,20 @@ public class NetworksActivity extends AppCompatActivity {
         alertDialog.setTitle(getString(R.string.conflict_title));
         alertDialog.setMessage(String.format(getString(R.string.conflict_dialog_message), newNetwork.getSsid()));
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getString(R.string.no), (dialog, which) -> dialog.dismiss());
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.yes), (dialog, which) -> {
-            existingNetwork.updatePassword(newNetwork.getPassword());
-            dataManager.updateNetwork(existingNetwork);
-        });
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.yes), (dialog, which) -> updateNetwork(newNetwork, existingNetwork));
         alertDialog.show();
     }
 
-    private boolean existConflict(Network newNetwork, Network existingNetwork) {
+    private void updateNetwork(Network newNetwork, Network existingNetwork) {
+        if (existingNetwork.hasNoCategory()) {
+            existingNetwork.assignToCategory(newNetwork.getCategory());
+        }
+        existingNetwork.updatePassword(newNetwork.getPassword());
+        dataManager.updateNetwork(existingNetwork);
+        refreshViews();
+    }
+
+    private boolean existConflictOnPassword(Network newNetwork, Network existingNetwork) {
         return existingNetwork != null && !existingNetwork.getPassword().equals(newNetwork.getPassword());
     }
 }

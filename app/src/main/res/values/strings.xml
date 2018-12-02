@@ -13,8 +13,8 @@
     <string name="toast_password_copied">Password has been copied</string>
     <string name="toast_error">Something went wrong!</string>
     <string name="conflict_title">Conflict</string>
-    <string name="no">No</string>
-    <string name="yes">Yes</string>
+    <string name="no">NO</string>
+    <string name="yes">YES</string>
     <string name="cancelled">Cancelled</string>
     <string name="success_import">Imported successfully</string>
     <string name="conflict_dialog_message">Do you want to update the password for %s ?</string>
