@@ -1,5 +1,9 @@
 package com.example.pk.wifinotes.models;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
 public class NetworkCategory {
@@ -23,11 +27,22 @@ public class NetworkCategory {
         networks.add(network);
     }
 
-    @Override
-    public String toString() {
-        return "NetworkCategory{" +
-                "categoryName='" + categoryName + '\'' +
-                ", networks=" + networks +
-                '}';
+    public String toJSONString() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Network network : networks) {
+            jsonArray.put(network.toJSON());
+        }
+
+        JSONObject mainJsonObject = new JSONObject();
+
+        try {
+            mainJsonObject.put("categoryName", categoryName);
+            mainJsonObject.put("networks", jsonArray);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return mainJsonObject.toString();
     }
 }

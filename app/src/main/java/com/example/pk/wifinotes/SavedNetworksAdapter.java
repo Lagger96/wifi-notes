@@ -1,6 +1,5 @@
 package com.example.pk.wifinotes;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +13,8 @@ import java.util.List;
 public class SavedNetworksAdapter extends RecyclerView.Adapter<SavedNetworksAdapter.SavedNetworksViewHolder> {
 
     private List<Network> networks;
-    private Context context;
-    private OnClickAction displayDetailsAction;
-    private OnClickAction shareNetworkAction;
+    private Boolean displayCategoryName;
+    private Callbacks callbacks;
 
     public static class SavedNetworksViewHolder extends RecyclerView.ViewHolder {
 
@@ -35,17 +33,19 @@ public class SavedNetworksAdapter extends RecyclerView.Adapter<SavedNetworksAdap
         }
     }
 
-    public SavedNetworksAdapter(List<Network> networks, OnClickAction displayDetailsAction, OnClickAction shareNetworkAction) {
+    public SavedNetworksAdapter(List<Network> networks, Callbacks callbacks, Boolean displayCategoryName) {
         this.networks = networks;
-        this.displayDetailsAction = displayDetailsAction;
-        this.shareNetworkAction = shareNetworkAction;
+        this.displayCategoryName = displayCategoryName;
+        this.callbacks = callbacks;
+    }
+
+    public SavedNetworksAdapter(List<Network> networks, Callbacks callbacks) {
+        this(networks, callbacks, true);
     }
 
     @Override
     public SavedNetworksAdapter.SavedNetworksViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
-
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View savedNetworkView = inflater.inflate(R.layout.item_saved_network, parent, false);
 
         return new SavedNetworksAdapter.SavedNetworksViewHolder(savedNetworkView);
@@ -56,8 +56,11 @@ public class SavedNetworksAdapter extends RecyclerView.Adapter<SavedNetworksAdap
         final Network network = networks.get(position);
         holder.tvNetworkName.setText(network.getSsid());
         holder.tvCategoryName.setText(network.getCategory());
-        holder.itemView.setOnClickListener((v) -> displayDetailsAction.onClick(network));
-        holder.iconShare.setOnClickListener((v) -> shareNetworkAction.onClick(network) );
+        if (!displayCategoryName) {
+            holder.tvCategoryName.setVisibility(View.GONE);
+        }
+        holder.itemView.setOnClickListener((v) -> callbacks.displayDetails.onClick(network));
+        holder.iconShare.setOnClickListener((v) -> callbacks.shareNetwork.onClick(network));
     }
 
     @Override
