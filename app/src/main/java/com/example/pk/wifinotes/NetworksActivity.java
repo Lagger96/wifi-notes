@@ -49,8 +49,8 @@ public class NetworksActivity extends AppCompatActivity {
     }
 
     private void addNetwork() {
-        AddNetworkDialog addNetworkDialog = new AddNetworkDialog(this);
-        addNetworkDialog.show();
+        AdderNetworkDialog adderNetworkDialog = new AdderNetworkDialog(this);
+        adderNetworkDialog.show();
     }
 
     private void setupViewPager(ViewPager viewPager) {

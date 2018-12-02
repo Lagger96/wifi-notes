@@ -9,14 +9,14 @@ import android.widget.Toast;
 import com.example.pk.wifinotes.database.DbHelper;
 import com.example.pk.wifinotes.models.Network;
 
-public class AddNetworkDialog extends AlertDialog {
+public class AdderNetworkDialog extends AlertDialog {
 
-    public AddNetworkDialog(Context context) {
+    public AdderNetworkDialog(Context context) {
         super(context);
         setTitle(R.string.add_network);
 
         LayoutInflater layoutInflater = getLayoutInflater();
-        View layout = layoutInflater.inflate(R.layout.add_network_dialog, null);
+        View layout = layoutInflater.inflate(R.layout.dialog_network_adder, null);
         setView(layout);
 
         setButton(BUTTON_POSITIVE, context.getString(R.string.add), (dialog, which) -> {
