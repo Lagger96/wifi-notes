@@ -11,7 +11,7 @@ import com.example.pk.wifinotes.models.Network;
 
 public class AdderNetworkDialog extends AlertDialog {
 
-    public AdderNetworkDialog(Context context) {
+    public AdderNetworkDialog(Context context, Runnable callback) {
         super(context);
         setTitle(R.string.add_network);
 
@@ -41,6 +41,7 @@ public class AdderNetworkDialog extends AlertDialog {
             DataManager dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase());
             if(dataManager.addNetwork(network)) {
                 Toast.makeText(context, context.getString(R.string.network_save_successful), Toast.LENGTH_SHORT).show();
+                callback.run();
                 dismiss();
             } else {
                 Toast.makeText(context, context.getString(R.string.network_save_failure), Toast.LENGTH_SHORT).show();
