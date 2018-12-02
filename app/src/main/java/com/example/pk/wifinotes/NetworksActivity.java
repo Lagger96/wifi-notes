@@ -129,7 +129,7 @@ public class NetworksActivity extends AppCompatActivity {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle(getString(R.string.conflict_title));
         alertDialog.setMessage(String.format(getString(R.string.conflict_dialog_message), newNetwork.getSsid()));
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getString(R.string.no), (dialog, which) -> dialog.dismiss());
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.no), (dialog, which) -> {});
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.yes), (dialog, which) -> updateNetwork(newNetwork, existingNetwork));
         alertDialog.show();
     }
