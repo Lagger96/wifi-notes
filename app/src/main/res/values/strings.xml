@@ -14,4 +14,6 @@
     <string name="password_hint">Password</string>
     <string name="category_hint">Category</string>
     <string name="description_hint">Description</string>
+    <string name="network_save_successful">Successfully saved network</string>
+    <string name="network_save_failure">Network not saved</string>
 </resources>
