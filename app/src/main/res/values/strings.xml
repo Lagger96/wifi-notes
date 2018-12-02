@@ -19,6 +19,6 @@
     <string name="category_hint">Category</string>
     <string name="description_hint">Description</string>
     <string name="network_save_successful">Successfully saved network</string>
-    <string name="network_save_failure">Network not saved</string>
+    <string name="network_save_failure">Network with such name already exists</string>
     <string name="ssid_or_password_empty">Network name or password field is empty</string>
 </resources>
