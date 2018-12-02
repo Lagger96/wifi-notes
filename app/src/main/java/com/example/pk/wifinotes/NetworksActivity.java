@@ -77,11 +77,9 @@ public class NetworksActivity extends AppCompatActivity {
 
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
-        if (result != null) {
-            if (result.getContents() != null) {
+        if (result != null && result.getContents() != null) {
                 parseJSON(result.getContents());
                 Toast.makeText(this, R.string.success_import, Toast.LENGTH_LONG).show();
-            }
         }
     }
 
