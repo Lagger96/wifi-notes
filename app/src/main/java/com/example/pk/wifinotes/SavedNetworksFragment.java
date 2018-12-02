@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import com.example.pk.wifinotes.database.DbHelper;
 import com.example.pk.wifinotes.models.Network;
 
@@ -41,16 +40,12 @@ public class SavedNetworksFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.my_recycler_view);
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
 
-        // use a linear layout manager
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        // specify an adapter (see also next example)
-        adapter = new SavedNetworksAdapter(networks, this::displayDetails, this::shareNetwork);
+        adapter = new SavedNetworksAdapter(networks, new Callbacks(getContext()));
         recyclerView.setAdapter(adapter);
 
     }
@@ -59,13 +54,5 @@ public class SavedNetworksFragment extends Fragment {
         networks.clear();
         networks.addAll(dataManager.getNetworks());
         adapter.notifyDataSetChanged();
-    }
-
-    private void displayDetails(Network network) {
-        Toast.makeText(getContext(), "Network details", Toast.LENGTH_SHORT).show();
-    }
-
-    private void shareNetwork(Network network) {
-        Toast.makeText(getContext(), "Network share", Toast.LENGTH_SHORT).show();
     }
 }

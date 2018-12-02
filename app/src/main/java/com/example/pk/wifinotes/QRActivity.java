@@ -16,8 +16,8 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class QRActivity extends AppCompatActivity {
 
-    private static final String NETWORK_ID_PARAM = "networkId";
-    private static final String CATEGORY_NAME_PARAM = "categoryName";
+    public static final String NETWORK_ID_PARAM = "networkId";
+    public static final String CATEGORY_NAME_PARAM = "categoryName";
     private static final int DEFAULT_VALUE = -1;
     private ImageView QRCodeView;
     private DataManager dataManager;
