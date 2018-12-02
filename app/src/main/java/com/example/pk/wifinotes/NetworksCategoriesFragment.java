@@ -47,4 +47,10 @@ public class NetworksCategoriesFragment extends Fragment {
         adapter = new NetworksCategoriesAdapter(categories, new Callbacks(getContext()));
         recyclerView.setAdapter(adapter);
     }
+
+    public void notifyDataChanged() {
+        categories.clear();
+        categories.addAll(dataManager.getNetworkCategories());
+        adapter.notifyDataSetChanged();
+    }
 }

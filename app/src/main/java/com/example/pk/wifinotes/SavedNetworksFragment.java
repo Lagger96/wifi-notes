@@ -48,4 +48,10 @@ public class SavedNetworksFragment extends Fragment {
         adapter = new SavedNetworksAdapter(networks, new Callbacks(getContext()));
         recyclerView.setAdapter(adapter);
     }
+
+    public void notifyDataChanged() {
+        networks.clear();
+        networks.addAll(dataManager.getNetworks());
+        adapter.notifyDataSetChanged();
+    }
 }

@@ -59,4 +59,10 @@ public class NetworksActivity extends AppCompatActivity {
         adapter.addFragment(networksCategoriesFragment, getString(R.string.networks_categories));
         viewPager.setAdapter(adapter);
     }
+
+    private void refreshViews() {
+        savedNetworksFragment.notifyDataChanged();
+        networksCategoriesFragment.notifyDataChanged();
+    }
+
 }
