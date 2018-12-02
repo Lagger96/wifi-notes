@@ -44,7 +44,7 @@ public class NetworksActivity extends AppCompatActivity {
 
     private void setupImportButton() {
         Button importButton = findViewById(R.id.button_import);
-        importButton.setOnClickListener((v) -> importNetwork());
+        importButton.setOnClickListener(view -> importNetwork());
     }
 
     private void importNetwork() {
@@ -53,11 +53,12 @@ public class NetworksActivity extends AppCompatActivity {
 
     private void setupAddButton() {
         Button addButton = findViewById(R.id.button_add);
-        addButton.setOnClickListener((v) -> addNetwork());
+        addButton.setOnClickListener(view -> addNetwork());
     }
 
     private void addNetwork() {
-        Toast.makeText(this, "Add network", Toast.LENGTH_SHORT).show();
+        AdderNetworkDialog adderNetworkDialog = new AdderNetworkDialog(this, this::refreshViews);
+        adderNetworkDialog.show();
     }
 
     private void setupViewPager(ViewPager viewPager) {

@@ -6,7 +6,7 @@
     <string name="title_activity_networks">NetworksActivity</string>
     <string name="saved_networks">SAVED</string>
     <string name="networks_categories">CATEGORIES</string>
-    <string name="add_network">ADD</string>
+    <string name="add">ADD</string>
     <string name="import_network">IMPORT</string>
     <string name="copy">Copy</string>
     <string name="edit">Edit</string>
@@ -18,4 +18,13 @@
     <string name="cancelled">Cancelled</string>
     <string name="success_import">Imported successfully</string>
     <string name="conflict_dialog_message">Do you want to update the password for %s ?</string>
+    <string name="add_network">Add network</string>
+    <string name="cancel">CANCEL</string>
+    <string name="ssid_hint">Network name (SSID)</string>
+    <string name="password_hint">Password</string>
+    <string name="category_hint">Category</string>
+    <string name="description_hint">Description</string>
+    <string name="network_save_successful">Successfully saved network</string>
+    <string name="network_save_failure">Network with such name already exists</string>
+    <string name="ssid_or_password_empty">Network name or password field is empty</string>
 </resources>
