@@ -1,6 +1,5 @@
 package com.example.pk.wifinotes;
 
-import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -32,7 +31,6 @@ public class AdderNetworkDialog extends AlertDialog {
             String category = categoryText.getText().toString();
             String description = descriptionText.getText().toString();
 
-            System.out.println(ssid + " -> " + password);
             if (ssid.equals("") || password.equals("")) {
                 Toast.makeText(context, context.getString(R.string.ssid_or_password_empty), Toast.LENGTH_SHORT).show();
                 return;
