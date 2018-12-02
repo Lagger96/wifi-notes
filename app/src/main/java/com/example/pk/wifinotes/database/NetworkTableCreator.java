@@ -4,7 +4,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class NetworkTableCreator {
     public static void onUpgrade(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS NETOWORK;");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS NETWORK;");
         onCreate(sqLiteDatabase);
     }
 

@@ -55,6 +55,12 @@ public class SavedNetworksFragment extends Fragment {
 
     }
 
+    public void notifyDataChanged() {
+        networks.clear();
+        networks.addAll(dataManager.getNetworks());
+        adapter.notifyDataSetChanged();
+    }
+
     private void displayDetails(Network network) {
         Toast.makeText(getContext(), "Network details", Toast.LENGTH_SHORT).show();
     }

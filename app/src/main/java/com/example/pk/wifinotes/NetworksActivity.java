@@ -92,11 +92,16 @@ public class NetworksActivity extends AppCompatActivity {
                 Toast.makeText(this, R.string.cancelled, Toast.LENGTH_LONG).show();
             } else {
                 parseJSON(result.getContents());
+                refreshViews();
                 Toast.makeText(this, R.string.succes_import , Toast.LENGTH_LONG).show();
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    private void refreshViews() {
+        savedNetworksFragment.notifyDataChanged();
     }
 
     private void parseJSON(String contents) {
