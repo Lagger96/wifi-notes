@@ -64,4 +64,8 @@ public class Network {
         }
         return jsonObject;
     }
+
+    public static int compareNetworks(Network firstNetwork, Network secondNetwork) {
+        return firstNetwork.getSsid().compareTo(secondNetwork.ssid);
+    }
 }

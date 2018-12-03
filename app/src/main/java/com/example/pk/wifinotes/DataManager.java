@@ -6,6 +6,7 @@ import com.example.pk.wifinotes.models.Network;
 import com.example.pk.wifinotes.models.NetworkCategory;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DataManager {
@@ -17,7 +18,11 @@ public class DataManager {
     }
 
     public List<Network> getNetworks() {
-        return networkDAO.getAllNetworks();
+        List<Network> allNetworks = networkDAO.getAllNetworks();
+
+        Collections.sort(allNetworks, Network::compareNetworks);
+
+        return allNetworks;
     }
 
     public Network getNetwork(Integer networkId) {
@@ -30,6 +35,8 @@ public class DataManager {
         for (String categoryName : networkDAO.getCategoriesNames()) {
             categories.add(mapToNetworkCategory(networkDAO.getNetworksByCategoryName(categoryName), categoryName));
         }
+
+        Collections.sort(categories, NetworkCategory::compareCategories);
 
         return categories;
     }

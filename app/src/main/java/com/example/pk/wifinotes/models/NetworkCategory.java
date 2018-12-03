@@ -45,4 +45,8 @@ public class NetworkCategory {
 
         return mainJsonObject.toString();
     }
+
+    public static int compareCategories(NetworkCategory firstCategory, NetworkCategory secondCategory) {
+        return firstCategory.getCategoryName().compareTo(secondCategory.getCategoryName());
+    }
 }
