@@ -81,5 +81,7 @@ public class Callbacks {
 
     private void editNetwork(Network network) {
         Toast.makeText(context, "Edit network", Toast.LENGTH_SHORT).show();
+        //EditorNetworkDialog editorNetworkDialog = new EditorNetworkDialog(null, null, network);
+        //editorNetworkDialog.show();
     }
 }
