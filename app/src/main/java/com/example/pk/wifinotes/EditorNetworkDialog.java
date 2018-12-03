@@ -63,7 +63,7 @@ public class EditorNetworkDialog extends AlertDialog {
                 AlertDialog confirmationDialog = builder
                         .setTitle(context.getString(R.string.delete_title))
                         .setMessage(String.format(context.getString(R.string.delete_confirmation), network.getSsid()))
-                        .setPositiveButton(context.getString(R.string.yes), (dialog1, which) -> {
+                        .setPositiveButton(context.getString(R.string.delete), (dialog1, which) -> {
                             DataManager dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase());
                             dataManager.deleteNetwork(network.getId());
 
@@ -71,7 +71,7 @@ public class EditorNetworkDialog extends AlertDialog {
                             refreshViews.run();
                             dismiss();
                         })
-                        .setNegativeButton(context.getString(R.string.no), (dialog12, which) -> {})
+                        .setNegativeButton(context.getString(R.string.cancel), (dialog12, which) -> {})
                         .create();
                 confirmationDialog.show();
             });
