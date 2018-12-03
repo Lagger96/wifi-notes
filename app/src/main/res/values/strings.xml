@@ -34,4 +34,6 @@
     <string name="delete_title">Delete network</string>
     <string name="delete_confirmation">Are you sure you want to delete %s ?</string>
     <string name="network_deletion_successful">Network has been deleted</string>
+    <string name="no_categories">There are no networks with categories.</string>
+    <string name="no_networks">There are no saved networks yet. Use a button above to add or import a network.</string>
 </resources>
