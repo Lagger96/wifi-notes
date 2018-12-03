@@ -34,6 +34,8 @@ public class EditorNetworkDialog extends AlertDialog {
         ssidText.setFocusable(false);
 
         setButton(BUTTON_POSITIVE, context.getString(R.string.edit), (dialog, which) -> {});
+        setButton(BUTTON_NEGATIVE, context.getString(R.string.cancel), (dialog, which) -> {});
+        setButton(BUTTON_NEUTRAL, context.getString(R.string.delete), (dialog, which) -> {});
         setOnShowListener(dialog -> {
             getButton(BUTTON_POSITIVE).setOnClickListener(view -> {
                 int id = network.getId();
@@ -58,7 +60,7 @@ public class EditorNetworkDialog extends AlertDialog {
             });
             getButton(BUTTON_NEUTRAL).setOnClickListener(view -> {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                AlertDialog alertDialog = builder
+                AlertDialog confirmationDialog = builder
                         .setTitle(context.getString(R.string.delete_title))
                         .setMessage(String.format(context.getString(R.string.delete_confirmation), network.getSsid()))
                         .setPositiveButton(context.getString(R.string.yes), (dialog1, which) -> {
@@ -68,14 +70,11 @@ public class EditorNetworkDialog extends AlertDialog {
                             Toast.makeText(context, context.getString(R.string.network_deletion_successful), Toast.LENGTH_SHORT).show();
                             // TODO refresh
                             dismiss();
-
                         })
                         .setNegativeButton(context.getString(R.string.no), (dialog12, which) -> {})
                         .create();
-                alertDialog.show();
+                confirmationDialog.show();
             });
         });
-        setButton(BUTTON_NEGATIVE, context.getString(R.string.cancel), (dialog, which) -> {});
-        setButton(BUTTON_NEUTRAL, context.getString(R.string.delete), (dialog, which) -> {});
     }
 }
