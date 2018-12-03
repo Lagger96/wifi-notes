@@ -12,7 +12,7 @@ import com.example.pk.wifinotes.models.Network;
 
 public class EditorNetworkDialog extends AlertDialog {
 
-    public EditorNetworkDialog(Context context, Runnable callback, Network network) {
+    public EditorNetworkDialog(Context context, Runnable refreshViews, Network network) {
         super(context);
         setTitle(R.string.edit_network);
 
@@ -54,7 +54,7 @@ public class EditorNetworkDialog extends AlertDialog {
                 DataManager dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase());
                 if (dataManager.updateNetwork(modifiedNetwork)) {
                     Toast.makeText(context, context.getString(R.string.network_edit_successful), Toast.LENGTH_SHORT).show();
-                    // TODO refresh
+                    refreshViews.run();
                     dismiss();
                 }
             });
@@ -68,7 +68,7 @@ public class EditorNetworkDialog extends AlertDialog {
                             dataManager.deleteNetwork(network.getId());
 
                             Toast.makeText(context, context.getString(R.string.network_deletion_successful), Toast.LENGTH_SHORT).show();
-                            // TODO refresh
+                            refreshViews.run();
                             dismiss();
                         })
                         .setNegativeButton(context.getString(R.string.no), (dialog12, which) -> {})

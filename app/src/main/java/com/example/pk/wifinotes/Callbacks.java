@@ -80,6 +80,7 @@ public class Callbacks {
     }
 
     private void editNetwork(Network network) {
+        // TODO replace empty lambda with NetworkActivity.refreshViews()
         EditorNetworkDialog editorNetworkDialog = new EditorNetworkDialog(context, () -> {}, network);
         editorNetworkDialog.show();
     }
