@@ -42,8 +42,8 @@ public class DataManager {
         return networkDAO.saveNetwork(network);
     }
 
-    public void updateNetwork(Network network) {
-        networkDAO.updateNetwork(network);
+    public boolean updateNetwork(Network network) {
+        return networkDAO.updateNetwork(network);
     }
 
     public void deleteNetwork(Integer networkId) {

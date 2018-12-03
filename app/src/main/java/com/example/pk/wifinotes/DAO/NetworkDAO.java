@@ -42,7 +42,7 @@ public class NetworkDAO extends DBContentProvider {
         return getEntityFromCursor();
     }
 
-    public void updateNetwork(Network network) {
+    public boolean updateNetwork(Network network) {
         final String selectionArgs[] = {network.getCategory(), network.getDescription(), network.getPassword(), network.getSsid(), String.valueOf(network.getId())};
 
         try {
@@ -50,10 +50,12 @@ public class NetworkDAO extends DBContentProvider {
             if (cursor != null) {
                 cursor.moveToFirst();
                 cursor.close();
+                return true;
             }
         } catch (SQLiteConstraintException ex) {
             Log.w("Database", ex.getMessage());
         }
+        return false;
     }
 
     public void removeNetwork(Integer networkId) {
