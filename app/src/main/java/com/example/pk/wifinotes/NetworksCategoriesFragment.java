@@ -44,7 +44,7 @@ public class NetworksCategoriesFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new NetworksCategoriesAdapter(categories, new Callbacks(getContext(), this::notifyDataChanged));
+        adapter = new NetworksCategoriesAdapter(categories, new Callbacks(getContext(), this::refreshViews));
         recyclerView.setAdapter(adapter);
     }
 
@@ -52,5 +52,9 @@ public class NetworksCategoriesFragment extends Fragment {
         categories.clear();
         categories.addAll(dataManager.getNetworkCategories());
         adapter.notifyDataSetChanged();
+    }
+
+    public void refreshViews() {
+        ((NetworksActivity)getActivity()).refreshViews();
     }
 }

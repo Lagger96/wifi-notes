@@ -84,7 +84,7 @@ public class NetworksActivity extends AppCompatActivity {
         }
     }
 
-    private void refreshViews() {
+    public void refreshViews() {
         savedNetworksFragment.notifyDataChanged();
         networksCategoriesFragment.notifyDataChanged();
     }
