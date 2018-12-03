@@ -30,4 +30,6 @@
     <string name="edit_network">Edit network</string>
     <string name="network_edit_successful">Successfully modified network</string>
     <string name="password_empty">Password field is empty</string>
+    <string name="delete">DELETE</string>
+    <string name="delete_confirmation">Are you sure you want to delete %s ?</string>
 </resources>
