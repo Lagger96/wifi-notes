@@ -64,8 +64,11 @@ public class EditorNetworkDialog extends AlertDialog {
                         .setPositiveButton(context.getString(R.string.yes), (dialog1, which) -> {
                             DataManager dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase());
                             dataManager.deleteNetwork(network.getId());
-                            dismiss();
+
+                            Toast.makeText(context, context.getString(R.string.network_deletion_successful), Toast.LENGTH_SHORT).show();
                             // TODO refresh
+                            dismiss();
+
                         })
                         .setNegativeButton(context.getString(R.string.no), (dialog12, which) -> {})
                         .create();
