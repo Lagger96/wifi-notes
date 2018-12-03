@@ -31,9 +31,11 @@ public class EditorNetworkDialog extends AlertDialog {
         descriptionText.setText(network.getDescription());
 
         ssidText.setInputType(InputType.TYPE_NULL);
+        ssidText.setFocusable(false);
 
         setButton(BUTTON_POSITIVE, context.getString(R.string.edit), (dialog, which) -> {});
         setOnShowListener(dialog -> getButton(BUTTON_POSITIVE).setOnClickListener(view -> {
+            int id = network.getId();
             String ssid = network.getSsid();
             String password = passwordText.getText().toString();
             String category = categoryText.getText().toString();
@@ -44,15 +46,13 @@ public class EditorNetworkDialog extends AlertDialog {
                 return;
             }
 
-            Network modifiedNetwork = new Network(null, ssid, password, description, category);
+            Network modifiedNetwork = new Network(id, ssid, password, description, category);
 
             DataManager dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase());
             if(dataManager.updateNetwork(modifiedNetwork)) {
                 Toast.makeText(context, context.getString(R.string.network_edit_successful), Toast.LENGTH_SHORT).show();
                 //callback.run();
                 dismiss();
-            } else {
-                //Toast.makeText(context, context.getString(R.string.network_edit_failure), Toast.LENGTH_SHORT).show();
             }
         }));
         setButton(BUTTON_NEGATIVE, context.getString(R.string.cancel), (dialog, which) -> {});
