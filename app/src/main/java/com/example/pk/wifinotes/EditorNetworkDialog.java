@@ -59,6 +59,7 @@ public class EditorNetworkDialog extends AlertDialog {
             getButton(BUTTON_NEUTRAL).setOnClickListener(view -> {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 AlertDialog alertDialog = builder
+                        .setTitle(context.getString(R.string.delete_title))
                         .setMessage(String.format(context.getString(R.string.delete_confirmation), network.getSsid()))
                         .setPositiveButton(context.getString(R.string.yes), (dialog1, which) -> {
                             DataManager dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase());
