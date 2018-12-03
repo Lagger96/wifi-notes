@@ -45,7 +45,7 @@ public class SavedNetworksFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new SavedNetworksAdapter(networks, new Callbacks(getContext()));
+        adapter = new SavedNetworksAdapter(networks, new Callbacks(getContext(), this::notifyDataChanged));
         recyclerView.setAdapter(adapter);
 
     }

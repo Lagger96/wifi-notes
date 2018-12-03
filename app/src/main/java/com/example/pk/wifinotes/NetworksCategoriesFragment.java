@@ -44,7 +44,7 @@ public class NetworksCategoriesFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new NetworksCategoriesAdapter(categories, new Callbacks(getContext()));
+        adapter = new NetworksCategoriesAdapter(categories, new Callbacks(getContext(), this::notifyDataChanged));
         recyclerView.setAdapter(adapter);
     }
 

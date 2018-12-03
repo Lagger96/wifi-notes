@@ -20,12 +20,14 @@ public class Callbacks {
     OnClickNetworkAction displayDetails;
     OnClickNetworkAction shareNetwork;
     OnClickCategoryAction shareNetworkCategory;
+    private Runnable refreshView;
 
-    public Callbacks(Context context) {
+    public Callbacks(Context context, Runnable refreshView) {
         this.context = context;
         this.displayDetails = this::displayDetails;
         this.shareNetwork = this::shareNetwork;
         this.shareNetworkCategory = this::shareNetworkCategory;
+        this.refreshView = refreshView;
     }
 
     private void shareNetworkCategory(NetworkCategory networkCategory) {
@@ -80,8 +82,7 @@ public class Callbacks {
     }
 
     private void editNetwork(Network network) {
-        // TODO replace empty lambda with NetworkActivity.refreshViews()
-        EditorNetworkDialog editorNetworkDialog = new EditorNetworkDialog(context, () -> {}, network);
+        EditorNetworkDialog editorNetworkDialog = new EditorNetworkDialog(context, refreshView, network);
         editorNetworkDialog.show();
     }
 }
