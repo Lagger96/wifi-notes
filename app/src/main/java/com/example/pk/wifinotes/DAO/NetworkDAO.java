@@ -43,19 +43,17 @@ public class NetworkDAO extends DBContentProvider {
     }
 
     public boolean updateNetwork(Network network) {
-        final String selectionArgs[] = {network.getCategory(), network.getDescription(), network.getPassword(), network.getSsid(), String.valueOf(network.getId())};
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("ssid", network.getSsid());
+        contentValues.put("password", network.getPassword());
+        contentValues.put("description", network.getDescription());
+        contentValues.put("category", network.getCategory());
 
-        try {
-            cursor = super.rawQuery("UPDATE NETWORK SET CATEGORY = ?, DESCRIPTION = ?, PASSWORD = ?, SSID = ? WHERE NETWORK_ID = ? ", selectionArgs);
-            if (cursor != null) {
-                cursor.moveToFirst();
-                cursor.close();
-                return true;
-            }
-        } catch (SQLiteConstraintException ex) {
-            Log.w("Database", ex.getMessage());
-        }
-        return false;
+        String whereClause = "NETWORK_ID = ?";
+
+        String[] whereArgs = new String[] {network.getId().toString()};
+
+        return update(TABLE_NAME, contentValues, whereClause, whereArgs) > 0;
     }
 
     public void removeNetwork(Integer networkId) {
