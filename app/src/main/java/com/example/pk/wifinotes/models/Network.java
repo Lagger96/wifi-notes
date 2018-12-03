@@ -66,6 +66,6 @@ public class Network {
     }
 
     public static int compareNetworks(Network firstNetwork, Network secondNetwork) {
-        return firstNetwork.getSsid().compareTo(secondNetwork.ssid);
+        return firstNetwork.ssid.compareToIgnoreCase(secondNetwork.ssid);
     }
 }

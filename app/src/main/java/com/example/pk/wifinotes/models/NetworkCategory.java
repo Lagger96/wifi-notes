@@ -47,6 +47,6 @@ public class NetworkCategory {
     }
 
     public static int compareCategories(NetworkCategory firstCategory, NetworkCategory secondCategory) {
-        return firstCategory.getCategoryName().compareTo(secondCategory.getCategoryName());
+        return firstCategory.categoryName.compareToIgnoreCase(secondCategory.categoryName);
     }
 }
