@@ -8,8 +8,8 @@
     <string name="networks_categories">CATEGORIES</string>
     <string name="add">ADD</string>
     <string name="import_network">IMPORT</string>
-    <string name="copy">Copy</string>
-    <string name="edit">Edit</string>
+    <string name="copy">COPY</string>
+    <string name="edit">EDIT</string>
     <string name="toast_password_copied">Password has been copied</string>
     <string name="toast_error">Something went wrong!</string>
     <string name="conflict_title">Conflict</string>
@@ -27,4 +27,11 @@
     <string name="network_save_successful">Successfully saved network</string>
     <string name="network_save_failure">Network with such name already exists</string>
     <string name="ssid_or_password_empty">Network name or password field is empty</string>
+    <string name="edit_network">Edit network</string>
+    <string name="network_edit_successful">Successfully modified network</string>
+    <string name="password_empty">Password field is empty</string>
+    <string name="delete">DELETE</string>
+    <string name="delete_title">Delete network</string>
+    <string name="delete_confirmation">Are you sure you want to delete %s ?</string>
+    <string name="network_deletion_successful">Network has been deleted</string>
 </resources>

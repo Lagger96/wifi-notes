@@ -15,6 +15,10 @@ public abstract class DBContentProvider {
         return mDb.insert(tableName, null, values);
     }
 
+    public int update(String tableName, ContentValues contentValues, String whereClause, String[] whereArgs) {
+        return mDb.update(tableName, contentValues, whereClause, whereArgs);
+    }
+
     public Cursor rawQuery(String sql, String[] selectionArgs) {
         return mDb.rawQuery(sql, selectionArgs);
     }
