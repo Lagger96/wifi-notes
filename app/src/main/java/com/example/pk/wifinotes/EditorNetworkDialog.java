@@ -32,22 +32,22 @@ public class EditorNetworkDialog extends AlertDialog {
 
         ssidText.setInputType(InputType.TYPE_NULL);
 
-        setButton(BUTTON_POSITIVE, context.getString(R.string.add), (dialog, which) -> {});
+        setButton(BUTTON_POSITIVE, context.getString(R.string.edit), (dialog, which) -> {});
         setOnShowListener(dialog -> getButton(BUTTON_POSITIVE).setOnClickListener(view -> {
-            String ssid = ssidText.getText().toString();
+            String ssid = network.getSsid();
             String password = passwordText.getText().toString();
             String category = categoryText.getText().toString();
             String description = descriptionText.getText().toString();
 
-            if (ssid.equals("") || password.equals("")) {
-                Toast.makeText(context, context.getString(R.string.ssid_or_password_empty), Toast.LENGTH_SHORT).show();
+            if (password.equals("")) {
+                Toast.makeText(context, context.getString(R.string.password_empty), Toast.LENGTH_SHORT).show();
                 return;
             }
 
             Network modifiedNetwork = new Network(null, ssid, password, description, category);
 
             DataManager dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase());
-            if(dataManager.addNetwork(modifiedNetwork)) {
+            if(dataManager.updateNetwork(modifiedNetwork)) {
                 Toast.makeText(context, context.getString(R.string.network_edit_successful), Toast.LENGTH_SHORT).show();
                 //callback.run();
                 dismiss();
