@@ -1,3 +1,39 @@
 <resources>
     <string name="app_name">Wifi notes</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_networks">NetworksActivity</string>
+    <string name="saved_networks">SAVED</string>
+    <string name="networks_categories">CATEGORIES</string>
+    <string name="add">ADD</string>
+    <string name="import_network">IMPORT</string>
+    <string name="copy">COPY</string>
+    <string name="edit">EDIT</string>
+    <string name="toast_password_copied">Password has been copied</string>
+    <string name="toast_error">Something went wrong!</string>
+    <string name="conflict_title">Conflict</string>
+    <string name="no">NO</string>
+    <string name="yes">YES</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="success_import">Imported successfully</string>
+    <string name="conflict_dialog_message">Do you want to update the password for %s ?</string>
+    <string name="add_network">Add network</string>
+    <string name="cancel">CANCEL</string>
+    <string name="ssid_hint">Network name (SSID)</string>
+    <string name="password_hint">Password</string>
+    <string name="category_hint">Category</string>
+    <string name="description_hint">Description</string>
+    <string name="network_save_successful">Successfully saved network</string>
+    <string name="network_save_failure">Network with such name already exists</string>
+    <string name="ssid_or_password_empty">Network name or password field is empty</string>
+    <string name="edit_network">Edit network</string>
+    <string name="network_edit_successful">Successfully modified network</string>
+    <string name="password_empty">Password field is empty</string>
+    <string name="delete">DELETE</string>
+    <string name="delete_title">Delete network</string>
+    <string name="delete_confirmation">Are you sure you want to delete %s ?</string>
+    <string name="network_deletion_successful">Network has been deleted</string>
+    <string name="no_categories">There are no networks with categories.</string>
+    <string name="no_networks">There are no saved networks yet. Use a button above to add or import a network.</string>
 </resources>

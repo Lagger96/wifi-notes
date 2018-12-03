@@ -6,20 +6,28 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 0;
+    private static final int DATABASE_VERSION = 3;
     private static final String DATABASE_NAME = "wifinotes.db";
+    private static DbHelper dbHelperInstance;
 
-    public DbHelper(Context context) {
+    public static synchronized DbHelper getInstance(Context context) {
+        if (dbHelperInstance == null) {
+            dbHelperInstance = new DbHelper(context);
+        }
+        return dbHelperInstance;
+    }
+
+    private DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        NetworkTableCreator.onCreate(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        NetworkTableCreator.onUpgrade(db);
     }
 }
