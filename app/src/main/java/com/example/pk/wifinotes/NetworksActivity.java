@@ -116,12 +116,20 @@ public class NetworksActivity extends AppCompatActivity {
 
         Network existingNetwork = dataManager.getNetworkBySSID(newNetwork.getSsid());
 
-        if (existConflictOnPassword(newNetwork, existingNetwork)) {
-            showConflictDialog(newNetwork, existingNetwork);
+        if (existingNetwork != null) {
+            if (existingNetwork.hasNoCategory()) {
+                existingNetwork.assignToCategory(newNetwork.getCategory());
+                dataManager.updateNetwork(existingNetwork);
+            }
+
+            if (existConflictOnPassword(newNetwork, existingNetwork)) {
+                showConflictDialog(newNetwork, existingNetwork);
+            }
         } else {
             dataManager.addNetwork(newNetwork);
-            refreshViews();
         }
+
+        refreshViews();
     }
 
     private void showConflictDialog(Network newNetwork, Network existingNetwork) {
@@ -134,15 +142,12 @@ public class NetworksActivity extends AppCompatActivity {
     }
 
     private void updateNetwork(Network newNetwork, Network existingNetwork) {
-        if (existingNetwork.hasNoCategory()) {
-            existingNetwork.assignToCategory(newNetwork.getCategory());
-        }
         existingNetwork.updatePassword(newNetwork.getPassword());
         dataManager.updateNetwork(existingNetwork);
         refreshViews();
     }
 
     private boolean existConflictOnPassword(Network newNetwork, Network existingNetwork) {
-        return existingNetwork != null && !existingNetwork.getPassword().equals(newNetwork.getPassword());
+        return !existingNetwork.getPassword().equals(newNetwork.getPassword());
     }
 }
