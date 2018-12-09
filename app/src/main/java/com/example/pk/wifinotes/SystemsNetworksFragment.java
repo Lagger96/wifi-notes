@@ -59,10 +59,10 @@ public class SystemsNetworksFragment extends Fragment {
     }
 
     public void notifyDataChanged() { // TODO
-        networks.clear();
-        networks.addAll(dataManager.getNetworks());
-        adapter.notifyDataSetChanged();
-        setVisibility();
+//        networks.clear();
+//        networks.addAll(dataManager.getNetworks());
+//        adapter.notifyDataSetChanged();
+//        setVisibility();
     }
 
     public void refreshViews() { // TODO
