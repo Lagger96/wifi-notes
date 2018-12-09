@@ -71,7 +71,6 @@ public class NetworksActivity extends AppCompatActivity {
         adderNetworkDialog.show();
     }
 
-    private void setupViewPager() {
     private void setupLanguageButton() {
         Button languageButton = findViewById(R.id.button_language);
         languageButton.setOnClickListener(view -> changeLanguage());
