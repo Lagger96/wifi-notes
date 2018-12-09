@@ -184,8 +184,6 @@ public class NetworksActivity extends AppCompatActivity {
         super.onStop();
 
         int lastSelectedFragment = viewPager.getCurrentItem();
-        System.out.println("Nidden stop => " + lastSelectedFragment);
-
         getPreferences(MODE_PRIVATE)
                 .edit()
                 .putInt(LAST_SELECTED_FRAGMENT_KEY, lastSelectedFragment)
