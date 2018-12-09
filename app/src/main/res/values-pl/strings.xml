@@ -38,4 +38,6 @@
         sieć.
     </string>
     <string name="language">PL</string>
+    <string name="systems_networks">ANDROID</string>
+    <string name="no_system_networks">Brak dostępnych bądź zapamiętanych sieci w Androidzie.</string>
 </resources>
