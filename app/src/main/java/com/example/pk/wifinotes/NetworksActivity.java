@@ -21,6 +21,7 @@ public class NetworksActivity extends AppCompatActivity {
 
     private SavedNetworksFragment savedNetworksFragment = new SavedNetworksFragment();
     private NetworksCategoriesFragment networksCategoriesFragment = new NetworksCategoriesFragment();
+    private SystemsNetworksFragment systemsNetworksFragment = new SystemsNetworksFragment();
     private DataManager dataManager;
 
     @Override
@@ -65,6 +66,7 @@ public class NetworksActivity extends AppCompatActivity {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(savedNetworksFragment, getString(R.string.saved_networks));
         adapter.addFragment(networksCategoriesFragment, getString(R.string.networks_categories));
+        adapter.addFragment(systemsNetworksFragment, getString(R.string.systems_networks));
         viewPager.setAdapter(adapter);
     }
 
