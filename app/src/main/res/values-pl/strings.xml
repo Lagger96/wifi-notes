@@ -34,6 +34,8 @@
     <string name="delete_confirmation">Czy na pewno chcesz usunąć %s ?</string>
     <string name="network_deletion_successful">Sieć została usunięta</string>
     <string name="no_categories">Brak sieci z przypisanymi kategoriami.</string>
-    <string name="no_networks">Nie dodałeś jeszcze żadnej sieci. Możesz użyć jednego z przycisków powyżej aby dodać sieć.</string>
+    <string name="no_networks">Nie dodałeś jeszcze żadnej sieci. Możesz użyć jednego z przycisków powyżej aby dodać
+        sieć.
+    </string>
     <string name="language">PL</string>
 </resources>

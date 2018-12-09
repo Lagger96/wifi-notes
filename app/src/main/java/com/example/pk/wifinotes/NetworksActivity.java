@@ -2,11 +2,11 @@ package com.example.pk.wifinotes;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.Button;
 import android.widget.Toast;
@@ -98,8 +98,8 @@ public class NetworksActivity extends AppCompatActivity {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
         if (result != null && result.getContents() != null) {
-                parseJSON(result.getContents());
-                Toast.makeText(this, R.string.success_import, Toast.LENGTH_LONG).show();
+            parseJSON(result.getContents());
+            Toast.makeText(this, R.string.success_import, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -155,7 +155,8 @@ public class NetworksActivity extends AppCompatActivity {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle(getString(R.string.conflict_title));
         alertDialog.setMessage(String.format(getString(R.string.conflict_dialog_message), newNetwork.getSsid()));
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.no), (dialog, which) -> {});
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.no), (dialog, which) -> {
+        });
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.yes), (dialog, which) -> updateNetwork(newNetwork, existingNetwork));
         alertDialog.show();
     }

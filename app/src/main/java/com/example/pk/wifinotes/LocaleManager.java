@@ -19,7 +19,7 @@ public class LocaleManager {
     }
 
     public static void changeLocale(Context c) {
-        if(getLanguage(c).equalsIgnoreCase(LANGUAGE_ENGLISH)) {
+        if (getLanguage(c).equalsIgnoreCase(LANGUAGE_ENGLISH)) {
             persistLanguage(c, LANGUAGE_POLISH);
             updateResources(c, LANGUAGE_POLISH);
         } else {
@@ -29,7 +29,8 @@ public class LocaleManager {
     }
 
     private static String getLanguage(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getString(LANGUAGE_KEY, ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration()).get(0).getLanguage());
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(LANGUAGE_KEY,
+                ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration()).get(0).getLanguage());
     }
 
     private static void persistLanguage(Context context, String language) {
