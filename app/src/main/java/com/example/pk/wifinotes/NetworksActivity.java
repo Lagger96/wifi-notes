@@ -89,6 +89,7 @@ public class NetworksActivity extends AppCompatActivity {
     public void refreshViews() {
         savedNetworksFragment.notifyDataChanged();
         networksCategoriesFragment.notifyDataChanged();
+        systemsNetworksFragment.notifyDataChanged();
     }
 
     private void parseJSON(String contents) {
