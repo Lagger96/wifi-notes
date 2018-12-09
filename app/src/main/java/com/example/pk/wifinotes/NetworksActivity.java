@@ -1,11 +1,11 @@
 package com.example.pk.wifinotes;
 
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.Button;
 import android.widget.Toast;
@@ -18,10 +18,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class NetworksActivity extends AppCompatActivity {
+    private static final String LAST_SELECTED_FRAGMENT_KEY = "last_selected_fragment";
 
     private SavedNetworksFragment savedNetworksFragment = new SavedNetworksFragment();
     private NetworksCategoriesFragment networksCategoriesFragment = new NetworksCategoriesFragment();
     private DataManager dataManager;
+    private ViewPager viewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +36,8 @@ public class NetworksActivity extends AppCompatActivity {
         setupAddButton();
         setupImportButton();
 
-        ViewPager viewPager = findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+        viewPager = findViewById(R.id.viewpager);
+        setupViewPager();
 
         TabLayout tabLayout = findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
@@ -61,11 +64,14 @@ public class NetworksActivity extends AppCompatActivity {
         adderNetworkDialog.show();
     }
 
-    private void setupViewPager(ViewPager viewPager) {
+    private void setupViewPager() {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(savedNetworksFragment, getString(R.string.saved_networks));
         adapter.addFragment(networksCategoriesFragment, getString(R.string.networks_categories));
         viewPager.setAdapter(adapter);
+
+        int lastSelectedFragment = getPreferences(MODE_PRIVATE).getInt(LAST_SELECTED_FRAGMENT_KEY, 0);
+        viewPager.setCurrentItem(lastSelectedFragment);
     }
 
     private void startQRScanner() {
@@ -79,8 +85,8 @@ public class NetworksActivity extends AppCompatActivity {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
         if (result != null && result.getContents() != null) {
-                parseJSON(result.getContents());
-                Toast.makeText(this, R.string.success_import, Toast.LENGTH_LONG).show();
+            parseJSON(result.getContents());
+            Toast.makeText(this, R.string.success_import, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -136,7 +142,8 @@ public class NetworksActivity extends AppCompatActivity {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle(getString(R.string.conflict_title));
         alertDialog.setMessage(String.format(getString(R.string.conflict_dialog_message), newNetwork.getSsid()));
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.no), (dialog, which) -> {});
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.no), (dialog, which) -> {
+        });
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.yes), (dialog, which) -> updateNetwork(newNetwork, existingNetwork));
         alertDialog.show();
     }
@@ -149,5 +156,18 @@ public class NetworksActivity extends AppCompatActivity {
 
     private boolean existConflictOnPassword(Network newNetwork, Network existingNetwork) {
         return !existingNetwork.getPassword().equals(newNetwork.getPassword());
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        int lastSelectedFragment = viewPager.getCurrentItem();
+        System.out.println("Nidden stop => " + lastSelectedFragment);
+
+        getPreferences(MODE_PRIVATE)
+                .edit()
+                .putInt(LAST_SELECTED_FRAGMENT_KEY, lastSelectedFragment)
+                .apply();
     }
 }
