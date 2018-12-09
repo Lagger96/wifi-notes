@@ -25,7 +25,6 @@ public class NetworksActivity extends AppCompatActivity {
     private DataManager dataManager;
     private ViewPager viewPager;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
