@@ -54,8 +54,8 @@ public class NetworksCategoriesFragment extends Fragment {
     }
 
     private void setVisibility() {
-            noCategoriesInfo.setVisibility(categories.size() > 0 ? View.GONE : View.VISIBLE);
-            recyclerView.setVisibility(categories.size() > 0 ? View.VISIBLE : View.GONE);
+        noCategoriesInfo.setVisibility(categories.size() > 0 ? View.GONE : View.VISIBLE);
+        recyclerView.setVisibility(categories.size() > 0 ? View.VISIBLE : View.GONE);
     }
 
     public void notifyDataChanged() {
@@ -66,6 +66,6 @@ public class NetworksCategoriesFragment extends Fragment {
     }
 
     public void refreshViews() {
-        ((NetworksActivity)getActivity()).refreshViews();
+        ((NetworksActivity) getActivity()).refreshViews();
     }
 }

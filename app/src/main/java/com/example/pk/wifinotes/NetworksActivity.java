@@ -1,5 +1,6 @@
 package com.example.pk.wifinotes;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -22,6 +23,7 @@ public class NetworksActivity extends AppCompatActivity {
 
     private SavedNetworksFragment savedNetworksFragment = new SavedNetworksFragment();
     private NetworksCategoriesFragment networksCategoriesFragment = new NetworksCategoriesFragment();
+    private SystemsNetworksFragment systemsNetworksFragment = new SystemsNetworksFragment();
     private DataManager dataManager;
     private ViewPager viewPager;
 
@@ -34,6 +36,7 @@ public class NetworksActivity extends AppCompatActivity {
 
         setupAddButton();
         setupImportButton();
+        setupLanguageButton();
 
         viewPager = findViewById(R.id.viewpager);
         setupViewPager();
@@ -42,6 +45,11 @@ public class NetworksActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         dataManager = new DataManager(DbHelper.getInstance(this).getWritableDatabase());
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleManager.setLocale(base));
     }
 
     private void setupImportButton() {
@@ -64,9 +72,23 @@ public class NetworksActivity extends AppCompatActivity {
     }
 
     private void setupViewPager() {
+    private void setupLanguageButton() {
+        Button languageButton = findViewById(R.id.button_language);
+        languageButton.setOnClickListener(view -> changeLanguage());
+    }
+
+    private void changeLanguage() {
+        LocaleManager.changeLocale(this);
+        finish();
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
+    }
+
+    private void setupViewPager() {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(savedNetworksFragment, getString(R.string.saved_networks));
         adapter.addFragment(networksCategoriesFragment, getString(R.string.networks_categories));
+        adapter.addFragment(systemsNetworksFragment, getString(R.string.systems_networks));
         viewPager.setAdapter(adapter);
 
         int lastSelectedFragment = getPreferences(MODE_PRIVATE).getInt(LAST_SELECTED_FRAGMENT_KEY, 0);
@@ -92,6 +114,7 @@ public class NetworksActivity extends AppCompatActivity {
     public void refreshViews() {
         savedNetworksFragment.notifyDataChanged();
         networksCategoriesFragment.notifyDataChanged();
+        systemsNetworksFragment.notifyDataChanged();
     }
 
     private void parseJSON(String contents) {

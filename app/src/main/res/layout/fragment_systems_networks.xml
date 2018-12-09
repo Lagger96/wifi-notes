@@ -11,7 +11,7 @@
             android:id="@+id/no_networks_info">
 
         <TextView
-                android:text="@string/no_networks"
+                android:text="@string/no_system_networks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
