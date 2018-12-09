@@ -1,5 +1,6 @@
 package com.example.pk.wifinotes;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +33,7 @@ public class NetworksActivity extends AppCompatActivity {
 
         setupAddButton();
         setupImportButton();
+        setupLanguageButton();
 
         ViewPager viewPager = findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -40,6 +42,11 @@ public class NetworksActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         dataManager = new DataManager(DbHelper.getInstance(this).getWritableDatabase());
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleManager.setLocale(base));
     }
 
     private void setupImportButton() {
@@ -59,6 +66,16 @@ public class NetworksActivity extends AppCompatActivity {
     private void addNetwork() {
         AdderNetworkDialog adderNetworkDialog = new AdderNetworkDialog(this, this::refreshViews);
         adderNetworkDialog.show();
+    }
+
+    private void setupLanguageButton() {
+        Button languageButton = findViewById(R.id.button_language);
+        languageButton.setOnClickListener(view -> changeLanguage());
+    }
+
+    private void changeLanguage() {
+        LocaleManager.changeLocale(this);
+        recreate();
     }
 
     private void setupViewPager(ViewPager viewPager) {

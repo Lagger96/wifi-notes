@@ -40,6 +40,16 @@
                     style="@android:style/Widget.Material.Light.Button.Borderless"
                     android:textStyle="bold"
                     android:id="@+id/button_import"/>
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/language"
+                    android:layout_marginEnd="12dp"
+                    android:layout_gravity="end"
+                    style="@android:style/Widget.Material.Light.Button.Borderless"
+                    android:textStyle="bold"
+                    android:id="@+id/button_language"/>
         </android.support.v7.widget.Toolbar>
 
 
