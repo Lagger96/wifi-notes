@@ -75,7 +75,9 @@ public class NetworksActivity extends AppCompatActivity {
 
     private void changeLanguage() {
         LocaleManager.changeLocale(this);
-        recreate();
+        finish();
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
     }
 
     private void setupViewPager(ViewPager viewPager) {

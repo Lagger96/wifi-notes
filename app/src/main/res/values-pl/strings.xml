@@ -9,7 +9,7 @@
     <string name="import_network">IMPORTUJ</string>
     <string name="copy">KOPIUJ</string>
     <string name="edit">EDYTUJ</string>
-    <string name="toast_password_copied">Skopiowano do schowka</string>
+    <string name="toast_password_copied">Skopiowano hasło do schowka</string>
     <string name="toast_error">Coś poszło nie tak!</string>
     <string name="conflict_title">Konflikt</string>
     <string name="no">NIE</string>
@@ -25,7 +25,7 @@
     <string name="description_hint">Opis</string>
     <string name="network_save_successful">Pomyślnie zapisano sieć</string>
     <string name="network_save_failure">Sieć o takiej nazwie już istnieje</string>
-    <string name="ssid_or_password_empty">Nazwa sieci lub hasło nie są uzupełnione</string>
+    <string name="ssid_or_password_empty">Nazwa sieci lub hasło jest puste</string>
     <string name="edit_network">Edytuj sieć</string>
     <string name="network_edit_successful">Pomyślnie zapisano zmiany</string>
     <string name="password_empty">Hasło jest puste</string>
@@ -33,7 +33,7 @@
     <string name="delete_title">Usuń sieć</string>
     <string name="delete_confirmation">Czy na pewno chcesz usunąć %s ?</string>
     <string name="network_deletion_successful">Sieć została usunięta</string>
-    <string name="no_categories">Brak sieci z kategoriami.</string>
-    <string name="no_networks">Brak sieci w aplikacji.</string>
+    <string name="no_categories">Brak sieci z przypisanymi kategoriami.</string>
+    <string name="no_networks">Nie dodałeś jeszcze żadnej sieci. Możesz użyć jednego z przycisków powyżej aby dodać sieć.</string>
     <string name="language">PL</string>
 </resources>

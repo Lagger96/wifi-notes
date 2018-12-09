@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.preference.PreferenceManager;
+import android.support.v4.os.ConfigurationCompat;
 
 import java.util.Locale;
 
@@ -28,7 +29,7 @@ public class LocaleManager {
     }
 
     private static String getLanguage(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getString(LANGUAGE_KEY, LANGUAGE_ENGLISH);
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(LANGUAGE_KEY, ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration()).get(0).getLanguage());
     }
 
     private static void persistLanguage(Context context, String language) {
