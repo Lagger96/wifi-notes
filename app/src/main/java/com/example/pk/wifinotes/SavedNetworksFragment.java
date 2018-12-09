@@ -51,7 +51,6 @@ public class SavedNetworksFragment extends Fragment {
 
         adapter = new SavedNetworksAdapter(networks, new Callbacks(getContext(), this::refreshViews));
         recyclerView.setAdapter(adapter);
-
     }
 
     private void setVisibility() {
@@ -67,6 +66,6 @@ public class SavedNetworksFragment extends Fragment {
     }
 
     public void refreshViews() {
-        ((NetworksActivity)getActivity()).refreshViews();
+        ((NetworksActivity) getActivity()).refreshViews();
     }
 }
