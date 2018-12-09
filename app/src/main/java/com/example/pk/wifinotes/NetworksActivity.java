@@ -19,11 +19,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class NetworksActivity extends AppCompatActivity {
+    private static final String LAST_SELECTED_FRAGMENT_KEY = "last_selected_fragment";
 
     private SavedNetworksFragment savedNetworksFragment = new SavedNetworksFragment();
     private NetworksCategoriesFragment networksCategoriesFragment = new NetworksCategoriesFragment();
     private SystemsNetworksFragment systemsNetworksFragment = new SystemsNetworksFragment();
     private DataManager dataManager;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +38,8 @@ public class NetworksActivity extends AppCompatActivity {
         setupImportButton();
         setupLanguageButton();
 
-        ViewPager viewPager = findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+        viewPager = findViewById(R.id.viewpager);
+        setupViewPager();
 
         TabLayout tabLayout = findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
@@ -69,6 +71,7 @@ public class NetworksActivity extends AppCompatActivity {
         adderNetworkDialog.show();
     }
 
+    private void setupViewPager() {
     private void setupLanguageButton() {
         Button languageButton = findViewById(R.id.button_language);
         languageButton.setOnClickListener(view -> changeLanguage());
@@ -81,12 +84,15 @@ public class NetworksActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
     }
 
-    private void setupViewPager(ViewPager viewPager) {
+    private void setupViewPager() {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(savedNetworksFragment, getString(R.string.saved_networks));
         adapter.addFragment(networksCategoriesFragment, getString(R.string.networks_categories));
         adapter.addFragment(systemsNetworksFragment, getString(R.string.systems_networks));
         viewPager.setAdapter(adapter);
+
+        int lastSelectedFragment = getPreferences(MODE_PRIVATE).getInt(LAST_SELECTED_FRAGMENT_KEY, 0);
+        viewPager.setCurrentItem(lastSelectedFragment);
     }
 
     private void startQRScanner() {
@@ -172,5 +178,18 @@ public class NetworksActivity extends AppCompatActivity {
 
     private boolean existConflictOnPassword(Network newNetwork, Network existingNetwork) {
         return !existingNetwork.getPassword().equals(newNetwork.getPassword());
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        int lastSelectedFragment = viewPager.getCurrentItem();
+        System.out.println("Nidden stop => " + lastSelectedFragment);
+
+        getPreferences(MODE_PRIVATE)
+                .edit()
+                .putInt(LAST_SELECTED_FRAGMENT_KEY, lastSelectedFragment)
+                .apply();
     }
 }
