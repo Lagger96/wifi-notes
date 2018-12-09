@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.example.pk.wifinotes.database.DbHelper;
 import com.example.pk.wifinotes.models.Network;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SavedNetworksFragment extends Fragment {
@@ -24,6 +25,7 @@ public class SavedNetworksFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private List<Network> networks;
     private DataManager dataManager;
+
 
     public SavedNetworksFragment() {
     }
@@ -38,7 +40,7 @@ public class SavedNetworksFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase());
-        networks = dataManager.getNetworks();
+        networks = NetworkStatusSetter.setStatus(dataManager.getNetworks());
 
         noNetworksInfo = view.findViewById(R.id.no_networks_info);
         recyclerView = view.findViewById(R.id.my_recycler_view);
@@ -60,10 +62,12 @@ public class SavedNetworksFragment extends Fragment {
     }
 
     public void notifyDataChanged() {
-        networks.clear();
-        networks.addAll(dataManager.getNetworks());
-        adapter.notifyDataSetChanged();
-        setVisibility();
+        if (networks != null && dataManager != null && adapter != null) {
+            networks.clear();
+            networks.addAll(NetworkStatusSetter.setStatus(dataManager.getNetworks()));
+            adapter.notifyDataSetChanged();
+            setVisibility();
+        }
     }
 
     public void refreshViews() {

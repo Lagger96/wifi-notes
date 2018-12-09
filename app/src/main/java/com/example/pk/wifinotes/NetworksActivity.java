@@ -1,6 +1,12 @@
 package com.example.pk.wifinotes;
 
+import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,9 +29,17 @@ public class NetworksActivity extends AppCompatActivity {
     private NetworksCategoriesFragment networksCategoriesFragment = new NetworksCategoriesFragment();
     private DataManager dataManager;
 
+    private BroadcastReceiver wifiStatusReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            refreshViews();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_networks);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -40,6 +54,17 @@ public class NetworksActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         dataManager = new DataManager(DbHelper.getInstance(this).getWritableDatabase());
+
+        ActivityCompat.requestPermissions(NetworksActivity.this, new String[]{ Manifest.permission.ACCESS_FINE_LOCATION }, 1);
+        registerReceiver(wifiStatusReceiver, new IntentFilter(WifiService.NETWORKS_STATUS_CHANGED));
+        startService(new Intent(this, WifiService.class));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(new Intent(this, WifiService.class));
+        this.unregisterReceiver(wifiStatusReceiver);
     }
 
     private void setupImportButton() {

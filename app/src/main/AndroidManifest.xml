@@ -2,7 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.pk.wifinotes">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
 
     <application
             android:allowBackup="true"
@@ -20,11 +25,19 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".QRActivity" />
-        <activity android:name=".QRScan"
-                  android:stateNotNeeded="false"
-                  android:theme="@style/zxing_CaptureTheme"
-                  android:windowSoftInputMode="stateAlwaysHidden">
+        <activity android:name=".QRActivity"/>
+        <activity
+                android:name=".QRScan"
+                android:stateNotNeeded="false"
+                android:theme="@style/zxing_CaptureTheme"
+                android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
+
+        <service
+                android:name=".WifiService"
+                android:enabled="true"
+                android:exported="false">
+        </service>
     </application>
+
 </manifest>

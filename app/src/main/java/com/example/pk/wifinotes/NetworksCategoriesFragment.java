@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.example.pk.wifinotes.database.DbHelper;
 import com.example.pk.wifinotes.models.NetworkCategory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NetworksCategoriesFragment extends Fragment {
@@ -59,10 +60,12 @@ public class NetworksCategoriesFragment extends Fragment {
     }
 
     public void notifyDataChanged() {
-        categories.clear();
-        categories.addAll(dataManager.getNetworkCategories());
-        adapter.notifyDataSetChanged();
-        setVisibility();
+        if (categories != null && dataManager != null && adapter != null) {
+            categories.clear();
+            categories.addAll(dataManager.getNetworkCategories());
+            adapter.notifyDataSetChanged();
+            setVisibility();
+        }
     }
 
     public void refreshViews() {
