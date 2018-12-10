@@ -39,4 +39,5 @@
     <string name="language">EN</string>
     <string name="systems_networks">ANDROID</string>
     <string name="no_system_networks">There is no network saved in Android that can be added.</string>
+    <string name="share">Share</string>
 </resources>
