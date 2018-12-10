@@ -38,5 +38,5 @@
     <string name="no_networks">There are no saved networks yet. Use a button above to add or import a network.</string>
     <string name="language">EN</string>
     <string name="systems_networks">ANDROID</string>
-    <string name="no_system_networks">There are no networks seen or known by Android.</string>
+    <string name="no_system_networks">There is no network saved in Android that can be added.</string>
 </resources>

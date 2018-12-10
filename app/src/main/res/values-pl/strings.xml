@@ -39,5 +39,5 @@
     </string>
     <string name="language">PL</string>
     <string name="systems_networks">ANDROID</string>
-    <string name="no_system_networks">Brak dostępnych bądź zapamiętanych sieci w Androidzie.</string>
+    <string name="no_system_networks">Brak sieci możliwych do dodania z systemu Android.</string>
 </resources>
