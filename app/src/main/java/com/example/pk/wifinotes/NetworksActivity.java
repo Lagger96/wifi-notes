@@ -57,7 +57,7 @@ public class NetworksActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        dataManager = new DataManager(DbHelper.getInstance(this).getWritableDatabase());
+        dataManager = new DataManager(DbHelper.getInstance(this).getWritableDatabase(), this);
 
         ActivityCompat.requestPermissions(NetworksActivity.this, new String[]{ Manifest.permission.ACCESS_FINE_LOCATION }, 1);
         registerReceiver(wifiStatusReceiver, new IntentFilter(WifiService.NETWORKS_STATUS_CHANGED));

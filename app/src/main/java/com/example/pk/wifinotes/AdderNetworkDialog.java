@@ -38,7 +38,7 @@ public class AdderNetworkDialog extends AlertDialog {
 
             Network network = new Network(null, ssid, password, description, category);
 
-            DataManager dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase());
+            DataManager dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase(), getContext());
             if(dataManager.addNetwork(network)) {
                 Toast.makeText(context, context.getString(R.string.network_save_successful), Toast.LENGTH_SHORT).show();
                 refreshViews.run();

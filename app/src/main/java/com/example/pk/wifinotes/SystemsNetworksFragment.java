@@ -37,8 +37,8 @@ public class SystemsNetworksFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase());
-        networks = dataManager.getNetworks(); // TODO
+        dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase(), getContext());
+        networks = dataManager.getSystemNetworks();
 
         noNetworksInfo = view.findViewById(R.id.no_networks_info);
         recyclerView = view.findViewById(R.id.my_recycler_view);

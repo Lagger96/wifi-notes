@@ -38,7 +38,7 @@ public class NetworksCategoriesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase());
+        dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase(), getContext());
         categories = dataManager.getNetworkCategories();
 
         noCategoriesInfo = view.findViewById(R.id.no_categories_info);
