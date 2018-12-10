@@ -8,7 +8,7 @@ import java.util.*;
 
 public class NetworkStatusSetter {
     private static String activeNetworkSsid;
-    private static Set<String> nearbyNetworksSsids;
+    private static Set<String> nearbyNetworksSsids = new HashSet<>();
     public static final int STATUS_DEFAULT = 0;
     public static final int STATUS_ACTIVE = 2;
     public static final int STATUS_NEARBY = 1;
