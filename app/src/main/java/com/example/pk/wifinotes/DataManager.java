@@ -81,6 +81,7 @@ public class DataManager {
     }
 
     private NetworkCategory mapToNetworkCategory(List<Network> networks, String categoryName) {
+        Collections.sort(networks, Network::compareNetworks);
         return new NetworkCategory(categoryName, networks);
     }
 }
