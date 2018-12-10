@@ -20,7 +20,7 @@
         <ImageView
                 android:layout_width="46dp"
                 android:layout_height="46dp"
-                app:srcCompat="@drawable/ic_wifi_nearby_24dp"
+                app:srcCompat="@drawable/ic_wifi_default_24dp"
                 android:id="@+id/icon_wifi"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="4dp"

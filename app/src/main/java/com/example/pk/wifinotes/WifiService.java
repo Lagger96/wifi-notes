@@ -134,9 +134,7 @@ public class WifiService extends Service {
         } else {
             NetworkStatusSetter.setActiveNetworkSsid(null);
         }
-        if (ssidSet.size() > 0) {
-            NetworkStatusSetter.setNearbyNetworksSsids(ssidSet);
-        }
+        NetworkStatusSetter.setNearbyNetworksSsids(ssidSet);
         sendBroadcast(intent);
     }
 }
