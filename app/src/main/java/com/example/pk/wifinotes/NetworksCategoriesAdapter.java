@@ -56,7 +56,7 @@ public class NetworksCategoriesAdapter extends RecyclerView.Adapter<NetworksCate
 
         holder.rvNetworks.setLayoutManager(new LinearLayoutManager(context));
 
-        adapter = new SavedNetworksAdapter(category.getNetworks(), callbacks,false);
+        adapter = new SavedNetworksAdapter(NetworkStatusSetter.setStatus(category.getNetworks()), callbacks, false);
         holder.rvNetworks.setAdapter(adapter);
     }
 

@@ -1,12 +1,17 @@
 package com.example.pk.wifinotes;
 
+import android.Manifest;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.Button;
 import android.widget.Toast;
@@ -27,9 +32,17 @@ public class NetworksActivity extends AppCompatActivity {
     private DataManager dataManager;
     private ViewPager viewPager;
 
+    private BroadcastReceiver wifiStatusReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            refreshViews();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_networks);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -44,7 +57,18 @@ public class NetworksActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        dataManager = new DataManager(DbHelper.getInstance(this).getWritableDatabase());
+        dataManager = new DataManager(DbHelper.getInstance(this).getWritableDatabase(), this);
+
+        ActivityCompat.requestPermissions(NetworksActivity.this, new String[]{ Manifest.permission.ACCESS_FINE_LOCATION }, 1);
+        registerReceiver(wifiStatusReceiver, new IntentFilter(WifiService.NETWORKS_STATUS_CHANGED));
+        startService(new Intent(this, WifiService.class));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(new Intent(this, WifiService.class));
+        this.unregisterReceiver(wifiStatusReceiver);
     }
 
     @Override
@@ -166,8 +190,7 @@ public class NetworksActivity extends AppCompatActivity {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle(getString(R.string.conflict_title));
         alertDialog.setMessage(String.format(getString(R.string.conflict_dialog_message), newNetwork.getSsid()));
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.no), (dialog, which) -> {
-        });
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.no), (dialog, which) -> {});
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.yes), (dialog, which) -> updateNetwork(newNetwork, existingNetwork));
         alertDialog.show();
     }

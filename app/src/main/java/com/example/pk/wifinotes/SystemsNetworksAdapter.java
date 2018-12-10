@@ -48,6 +48,7 @@ public class SystemsNetworksAdapter extends RecyclerView.Adapter<SystemsNetworks
     @Override
     public void onBindViewHolder(SystemsNetworksViewHolder holder, int position) {
         final Network network = networks.get(position);
+        holder.iconWifi.setImageResource(R.drawable.ic_wifi_system_24dp);
         holder.tvNetworkName.setText(network.getSsid());
         holder.tvCategoryName.setVisibility(View.GONE);
         holder.itemView.setOnClickListener((v) -> callbacks.displayDetails.onClick(network)); // TODO

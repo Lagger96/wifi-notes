@@ -28,7 +28,7 @@ public class QRActivity extends AppCompatActivity {
         setContentView(R.layout.activity_qr);
 
         QRCodeView = findViewById(R.id.image_view);
-        dataManager = new DataManager(DbHelper.getInstance(this).getWritableDatabase());
+        dataManager = new DataManager(DbHelper.getInstance(this).getWritableDatabase(), this);
 
         initView();
     }

@@ -54,6 +54,7 @@ public class SavedNetworksAdapter extends RecyclerView.Adapter<SavedNetworksAdap
     @Override
     public void onBindViewHolder(SavedNetworksViewHolder holder, int position) {
         final Network network = networks.get(position);
+        holder.iconWifi.setImageResource(getWifiIcon(network.getStatus()));
         holder.tvNetworkName.setText(network.getSsid());
         holder.tvCategoryName.setText(network.getCategory());
         if (!displayCategoryName) {
@@ -61,6 +62,19 @@ public class SavedNetworksAdapter extends RecyclerView.Adapter<SavedNetworksAdap
         }
         holder.itemView.setOnClickListener((v) -> callbacks.displayDetails.onClick(network));
         holder.iconShare.setOnClickListener((v) -> callbacks.shareNetwork.onClick(network));
+    }
+
+    private int getWifiIcon(int networkStatus) {
+        int iconId = R.drawable.ic_wifi_default_24dp;
+        switch (networkStatus) {
+            case NetworkStatusSetter.STATUS_ACTIVE:
+                iconId = R.drawable.ic_wifi_active_24dp;
+                break;
+            case NetworkStatusSetter.STATUS_NEARBY:
+                iconId = R.drawable.ic_wifi_nearby_24dp;
+                break;
+        }
+        return iconId;
     }
 
     @Override

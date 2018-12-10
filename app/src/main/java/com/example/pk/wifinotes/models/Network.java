@@ -9,6 +9,7 @@ public class Network {
     private String password;
     private String description;
     private String category;
+    private int status = 0;
 
     public Network(Integer id, String ssid, String password, String description, String category) {
         this.id = id;
@@ -52,6 +53,14 @@ public class Network {
 
     public String toJSONString() {
         return toJSON().toString();
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public JSONObject toJSON() {
