@@ -32,15 +32,17 @@ public class DataManager {
 
     public List<Network> getSystemNetworks() {
         List<Network> systemNetworks = new ArrayList<>();
-        for (WifiConfiguration configuredNetwork : wifiManager.getConfiguredNetworks()) {
-            String ssid = configuredNetwork.SSID.substring(1, configuredNetwork.SSID.length() - 1);
-            if (getNetworkBySSID(ssid) == null) {
-                systemNetworks.add(new Network(-1, ssid, null, null, null));
+        List<WifiConfiguration> wifiConfigurationList = wifiManager.getConfiguredNetworks();
+
+        if (wifiConfigurationList != null) {
+            for (WifiConfiguration configuredNetwork : wifiManager.getConfiguredNetworks()) {
+                String ssid = configuredNetwork.SSID.substring(1, configuredNetwork.SSID.length() - 1);
+                if (getNetworkBySSID(ssid) == null) {
+                    systemNetworks.add(new Network(-1, ssid, null, null, null));
+                }
             }
+            Collections.sort(systemNetworks, Network::compareNetworks);
         }
-
-        Collections.sort(systemNetworks, Network::compareNetworks);
-
         return systemNetworks;
     }
 
