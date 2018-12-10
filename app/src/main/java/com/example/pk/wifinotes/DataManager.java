@@ -38,6 +38,9 @@ public class DataManager {
                 systemNetworks.add(new Network(-1, ssid, null, null, null));
             }
         }
+
+        Collections.sort(systemNetworks, Network::compareNetworks);
+
         return systemNetworks;
     }
 
