@@ -91,7 +91,7 @@ public class NetworksActivity extends AppCompatActivity {
     }
 
     private void addNetwork() {
-        AdderNetworkDialog adderNetworkDialog = new AdderNetworkDialog(this, this::refreshViews);
+        AdderNetworkDialog adderNetworkDialog = new AdderNetworkDialog(this, this::refreshViews, null);
         adderNetworkDialog.show();
     }
 

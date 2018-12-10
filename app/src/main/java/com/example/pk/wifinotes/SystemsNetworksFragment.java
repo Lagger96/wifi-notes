@@ -22,7 +22,7 @@ public class SystemsNetworksFragment extends Fragment {
     private ConstraintLayout noNetworksInfo;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private List<Network> networks; // TODO
+    private List<Network> networks;
     private DataManager dataManager;
 
     public SystemsNetworksFragment() {
@@ -49,7 +49,7 @@ public class SystemsNetworksFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new SystemsNetworksAdapter(networks, new Callbacks(getContext(), this::refreshViews)); // TODO
+        adapter = new SystemsNetworksAdapter(networks, new Callbacks(getContext(), this::refreshViews));
         recyclerView.setAdapter(adapter);
     }
 
@@ -65,7 +65,7 @@ public class SystemsNetworksFragment extends Fragment {
 //        setVisibility();
     }
 
-    public void refreshViews() { // TODO
+    public void refreshViews() {
         ((NetworksActivity) getActivity()).refreshViews();
     }
 }
