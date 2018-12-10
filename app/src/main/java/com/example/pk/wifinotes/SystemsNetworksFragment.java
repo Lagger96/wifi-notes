@@ -11,27 +11,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.pk.wifinotes.database.DbHelper;
-import com.example.pk.wifinotes.models.NetworkCategory;
+import com.example.pk.wifinotes.models.Network;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class NetworksCategoriesFragment extends Fragment {
-    private static final String TAG = "NetworkCategoriesFragment";
+public class SystemsNetworksFragment extends Fragment {
+    private static final String TAG = "SystemsNetworksFragment";
 
     private RecyclerView recyclerView;
-    private ConstraintLayout noCategoriesInfo;
+    private ConstraintLayout noNetworksInfo;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private List<NetworkCategory> categories;
+    private List<Network> networks;
     private DataManager dataManager;
 
-    public NetworksCategoriesFragment() {
+    public SystemsNetworksFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_networks_categories, container, false);
+        return inflater.inflate(R.layout.fragment_systems_networks, container, false);
     }
 
     @Override
@@ -39,10 +38,10 @@ public class NetworksCategoriesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase(), getContext());
-        categories = dataManager.getNetworkCategories();
+        networks = dataManager.getSystemNetworks();
 
-        noCategoriesInfo = view.findViewById(R.id.no_categories_info);
-        recyclerView = view.findViewById(R.id.rv_network_categories);
+        noNetworksInfo = view.findViewById(R.id.no_networks_info);
+        recyclerView = view.findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
 
         setVisibility();
@@ -50,19 +49,19 @@ public class NetworksCategoriesFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new NetworksCategoriesAdapter(categories, new Callbacks(getContext(), this::refreshViews));
+        adapter = new SystemsNetworksAdapter(networks, new Callbacks(getContext(), this::refreshViews));
         recyclerView.setAdapter(adapter);
     }
 
     private void setVisibility() {
-        noCategoriesInfo.setVisibility(categories.size() > 0 ? View.GONE : View.VISIBLE);
-        recyclerView.setVisibility(categories.size() > 0 ? View.VISIBLE : View.GONE);
+        noNetworksInfo.setVisibility(networks.size() > 0 ? View.GONE : View.VISIBLE);
+        recyclerView.setVisibility(networks.size() > 0 ? View.VISIBLE : View.GONE);
     }
 
     public void notifyDataChanged() {
-        if (categories != null && dataManager != null && adapter != null) {
-            categories.clear();
-            categories.addAll(dataManager.getNetworkCategories());
+        if (networks != null && dataManager != null && adapter != null) {
+            networks.clear();
+            networks.addAll(dataManager.getSystemNetworks());
             adapter.notifyDataSetChanged();
             setVisibility();
         }

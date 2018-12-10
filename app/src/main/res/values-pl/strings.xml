@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wifi notes</string>
+    <string name="hello_blank_fragment">Cześć pusty fragment</string>
+    <string name="title_activity_networks">Aktywność sieci</string>
+    <string name="saved_networks">ZAPISANE</string>
+    <string name="networks_categories">KATEGORIE</string>
+    <string name="add">DODAJ</string>
+    <string name="import_network">IMPORTUJ</string>
+    <string name="copy">KOPIUJ</string>
+    <string name="edit">EDYTUJ</string>
+    <string name="toast_password_copied">Skopiowano hasło do schowka</string>
+    <string name="toast_error">Coś poszło nie tak!</string>
+    <string name="conflict_title">Konflikt</string>
+    <string name="no">NIE</string>
+    <string name="yes">TAK</string>
+    <string name="cancelled">Anulowano</string>
+    <string name="success_import">Import przebiegł pomyślnie</string>
+    <string name="conflict_dialog_message">Czy chcesz nadpisać hasło dla %s ?</string>
+    <string name="add_network">Dodaj sieć</string>
+    <string name="cancel">ANULUJ</string>
+    <string name="ssid_hint">Nazwa sieci (SSID)</string>
+    <string name="password_hint">Hasło</string>
+    <string name="category_hint">Kategoria</string>
+    <string name="description_hint">Opis</string>
+    <string name="network_save_successful">Pomyślnie zapisano sieć</string>
+    <string name="network_save_failure">Sieć o takiej nazwie już istnieje</string>
+    <string name="ssid_or_password_empty">Nazwa sieci lub hasło jest puste</string>
+    <string name="edit_network">Edytuj sieć</string>
+    <string name="network_edit_successful">Pomyślnie zapisano zmiany</string>
+    <string name="password_empty">Hasło jest puste</string>
+    <string name="delete">USUŃ</string>
+    <string name="delete_title">Usuń sieć</string>
+    <string name="delete_confirmation">Czy na pewno chcesz usunąć %s ?</string>
+    <string name="network_deletion_successful">Sieć została usunięta</string>
+    <string name="no_categories">Brak sieci z przypisanymi kategoriami.</string>
+    <string name="no_networks">Nie dodałeś jeszcze żadnej sieci. Możesz użyć jednego z przycisków powyżej aby dodać
+        sieć.
+    </string>
+    <string name="language">PL</string>
+    <string name="systems_networks">ANDROID</string>
+    <string name="no_system_networks">Brak sieci możliwych do dodania z systemu Android.</string>
+</resources>

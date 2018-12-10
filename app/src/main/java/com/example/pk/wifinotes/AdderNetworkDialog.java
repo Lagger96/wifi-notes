@@ -1,7 +1,9 @@
 package com.example.pk.wifinotes;
 
-import android.support.v7.app.AlertDialog;
 import android.content.Context;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -11,7 +13,7 @@ import com.example.pk.wifinotes.models.Network;
 
 public class AdderNetworkDialog extends AlertDialog {
 
-    public AdderNetworkDialog(Context context, Runnable refreshViews) {
+    public AdderNetworkDialog(Context context, Runnable refreshViews, @Nullable Network network) {
         super(context);
         setTitle(R.string.add_network);
 
@@ -19,9 +21,15 @@ public class AdderNetworkDialog extends AlertDialog {
         View layout = layoutInflater.inflate(R.layout.dialog_network_adder, null);
         setView(layout);
 
+        EditText ssidText = layout.findViewById(R.id.ssid);
+        if (network != null) {
+            ssidText.setText(network.getSsid());
+            ssidText.setInputType(InputType.TYPE_NULL);
+            ssidText.setFocusable(false);
+        }
+
         setButton(BUTTON_POSITIVE, context.getString(R.string.add), (dialog, which) -> {});
         setOnShowListener(dialog -> getButton(BUTTON_POSITIVE).setOnClickListener(view -> {
-            EditText ssidText = layout.findViewById(R.id.ssid);
             EditText passwordText = layout.findViewById(R.id.password);
             EditText categoryText = layout.findViewById(R.id.category);
             EditText descriptionText = layout.findViewById(R.id.description);
@@ -36,10 +44,10 @@ public class AdderNetworkDialog extends AlertDialog {
                 return;
             }
 
-            Network network = new Network(null, ssid, password, description, category);
+            Network newNetwork = new Network(null, ssid, password, description, category);
 
-            DataManager dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase());
-            if(dataManager.addNetwork(network)) {
+            DataManager dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase(), getContext());
+            if (dataManager.addNetwork(newNetwork)) {
                 Toast.makeText(context, context.getString(R.string.network_save_successful), Toast.LENGTH_SHORT).show();
                 refreshViews.run();
                 dismiss();

@@ -51,7 +51,7 @@ public class EditorNetworkDialog extends AlertDialog {
 
                 Network modifiedNetwork = new Network(id, ssid, password, description, category);
 
-                DataManager dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase());
+                DataManager dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase(), getContext());
                 if (dataManager.updateNetwork(modifiedNetwork)) {
                     Toast.makeText(context, context.getString(R.string.network_edit_successful), Toast.LENGTH_SHORT).show();
                     refreshView.run();
@@ -64,7 +64,7 @@ public class EditorNetworkDialog extends AlertDialog {
                         .setTitle(context.getString(R.string.delete_title))
                         .setMessage(String.format(context.getString(R.string.delete_confirmation), network.getSsid()))
                         .setPositiveButton(context.getString(R.string.delete), (dialog1, which) -> {
-                            DataManager dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase());
+                            DataManager dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase(), getContext());
                             dataManager.deleteNetwork(network.getId());
 
                             Toast.makeText(context, context.getString(R.string.network_deletion_successful), Toast.LENGTH_SHORT).show();
