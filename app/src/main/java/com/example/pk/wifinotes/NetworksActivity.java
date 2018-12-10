@@ -78,8 +78,11 @@ public class NetworksActivity extends AppCompatActivity {
 
     private void changeLanguage() {
         LocaleManager.changeLocale(this);
+        saveLastSelectedFragment();
+
+        Intent intent = getIntent();
         finish();
-        startActivity(getIntent());
+        startActivity(intent);
         overridePendingTransition(0, 0);
     }
 
@@ -183,6 +186,10 @@ public class NetworksActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
 
+        saveLastSelectedFragment();
+    }
+
+    private void saveLastSelectedFragment() {
         int lastSelectedFragment = viewPager.getCurrentItem();
         getPreferences(MODE_PRIVATE)
                 .edit()
