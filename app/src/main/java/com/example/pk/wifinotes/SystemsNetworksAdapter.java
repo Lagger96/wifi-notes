@@ -51,7 +51,7 @@ public class SystemsNetworksAdapter extends RecyclerView.Adapter<SystemsNetworks
         holder.iconWifi.setImageResource(R.drawable.ic_wifi_system_24dp);
         holder.tvNetworkName.setText(network.getSsid());
         holder.tvCategoryName.setVisibility(View.GONE);
-        holder.itemView.setOnClickListener((v) -> callbacks.displayDetails.onClick(network)); // TODO
+        holder.itemView.setOnClickListener(view -> callbacks.addSystemNetwork(network));
         holder.iconShare.setVisibility(View.GONE);
     }
 
