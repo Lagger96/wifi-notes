@@ -13,26 +13,24 @@ import android.view.ViewGroup;
 import com.example.pk.wifinotes.database.DbHelper;
 import com.example.pk.wifinotes.models.Network;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class SavedNetworksFragment extends Fragment {
-    private static final String TAG = "SavedNetworksFragment";
+public class SystemsNetworksFragment extends Fragment {
+    private static final String TAG = "SystemsNetworksFragment";
 
     private RecyclerView recyclerView;
     private ConstraintLayout noNetworksInfo;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private List<Network> networks;
+    private List<Network> networks; // TODO
     private DataManager dataManager;
 
-
-    public SavedNetworksFragment() {
+    public SystemsNetworksFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_saved_networks, container, false);
+        return inflater.inflate(R.layout.fragment_systems_networks, container, false);
     }
 
     @Override
@@ -40,7 +38,7 @@ public class SavedNetworksFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         dataManager = new DataManager(DbHelper.getInstance(getContext()).getWritableDatabase());
-        networks = NetworkStatusSetter.setStatus(dataManager.getNetworks());
+        networks = dataManager.getNetworks(); // TODO
 
         noNetworksInfo = view.findViewById(R.id.no_networks_info);
         recyclerView = view.findViewById(R.id.my_recycler_view);
@@ -51,7 +49,7 @@ public class SavedNetworksFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new SavedNetworksAdapter(networks, new Callbacks(getContext(), this::refreshViews));
+        adapter = new SystemsNetworksAdapter(networks, new Callbacks(getContext(), this::refreshViews)); // TODO
         recyclerView.setAdapter(adapter);
     }
 
@@ -60,16 +58,14 @@ public class SavedNetworksFragment extends Fragment {
         recyclerView.setVisibility(networks.size() > 0 ? View.VISIBLE : View.GONE);
     }
 
-    public void notifyDataChanged() {
-        if (networks != null && dataManager != null && adapter != null) {
-            networks.clear();
-            networks.addAll(NetworkStatusSetter.setStatus(dataManager.getNetworks()));
-            adapter.notifyDataSetChanged();
-            setVisibility();
-        }
+    public void notifyDataChanged() { // TODO
+//        networks.clear();
+//        networks.addAll(dataManager.getNetworks());
+//        adapter.notifyDataSetChanged();
+//        setVisibility();
     }
 
-    public void refreshViews() {
+    public void refreshViews() { // TODO
         ((NetworksActivity) getActivity()).refreshViews();
     }
 }
