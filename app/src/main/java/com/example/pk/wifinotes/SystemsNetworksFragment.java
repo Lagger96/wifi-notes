@@ -58,11 +58,13 @@ public class SystemsNetworksFragment extends Fragment {
         recyclerView.setVisibility(networks.size() > 0 ? View.VISIBLE : View.GONE);
     }
 
-    public void notifyDataChanged() { // TODO
-//        networks.clear();
-//        networks.addAll(dataManager.getNetworks());
-//        adapter.notifyDataSetChanged();
-//        setVisibility();
+    public void notifyDataChanged() {
+        if (networks != null && dataManager != null && adapter != null) {
+            networks.clear();
+            networks.addAll(dataManager.getSystemNetworks());
+            adapter.notifyDataSetChanged();
+            setVisibility();
+        }
     }
 
     public void refreshViews() {
